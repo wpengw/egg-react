@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
 import Home from './home';
 import About from './about';
+import Test from './test';
 
 import { Menu } from 'antd';
 
@@ -27,9 +28,13 @@ class App extends Component {
           <Menu.Item key="/about">
             <Link to="/about">About</Link>
           </Menu.Item>
+          <Menu.Item key="/test">
+            <Link to="/test">test</Link>
+          </Menu.Item>
         </Menu>
         <Switch>
           <Route path="/about" component={About}/>
+          <Route path="/test" component={Test}/>
           <Route path="/" component={Home}/>
         </Switch>
       </div>

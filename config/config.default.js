@@ -23,8 +23,21 @@ module.exports = app => {
     'access'
   ];
 
+  exports.mysql = {
+    client: {
+      host: 'localhost',
+      port: '3306',
+      user: 'root',
+      password: '106540719',
+      database: 'egg_demo'
+    },
+    app: true,
+    // load into agent, default is close
+    agent: false
+  };
+
   exports.reactssr = {
-    layout: path.join(app.baseDir, 'app/web/view/layout.html')
+    layout: path.join(app.baseDir, 'app/web/index.html')
   }
 
   return exports;

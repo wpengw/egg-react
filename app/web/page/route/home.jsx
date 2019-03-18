@@ -4,21 +4,21 @@ import { add, del } from '../store/actions';
 
 class Home extends Component {
   render() {
-    const { add, del, list } = this.props;
-    const id = list.length + 1;
-    const item = {
-      id,
-      title: `Egg+React 服务端渲染骨架-${id}`,
-      summary: '基于Egg + React + Webpack3/Webpack2 服务端渲染骨架项目',
-      hits: 550 + id,
-      url: 'https://github.com/hubcarl/egg-react-webpack-boilerplate'
-    };
+    // const { add, del, list } = this.props;
+    // const id = list.length + 1;
+    // const item = {
+    //   id,
+    //   title: `Egg+React 服务端渲染骨架-${id}`,
+    //   summary: '基于Egg + React + Webpack3/Webpack2 服务端渲染骨架项目',
+    //   hits: 550 + id,
+    //   url: 'https://github.com/hubcarl/egg-react-webpack-boilerplate'
+    // };
     return <div className="redux-nav-item">
       <h3>SPA Client Side</h3>
       <div className="container">
         <div className="row row-offcanvas row-offcanvas-right">
           <div className="col-xs-12 col-sm-9">
-            <ul className="smart-artiles" id="articleList">
+            {/* <ul className="smart-artiles" id="articleList">
               {list.map(function(item) {
                 return <li key={item.id}>
                   <div className="point">+{item.hits}</div>
@@ -44,7 +44,7 @@ class Home extends Component {
                   </div>
                 </li>;
               })}
-            </ul>
+            </ul> */}
           </div>
         </div>
       </div>
