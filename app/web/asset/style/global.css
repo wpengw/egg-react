@@ -1,0 +1,11 @@
+@import "./normalize.css";
+@import "./bootstrap.css";
+@import "./app.css";
+
+.container {
+  height: 100%;
+  box-sizing: border-box;
+  width: 1140px;
+  padding: 0 30px;
+  margin: 0 auto;
+}

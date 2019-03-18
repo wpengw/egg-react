@@ -2,10 +2,9 @@ import { take, put, call, fork, select, all } from 'redux-saga/effects'
 import * as $ from '../../../api/home';
 
 import * as actions from '../../actions'
-import { func } from 'prop-types';
 
 export const getUserInfoApi = async () => {
-  const res = await $.getUser({uid: 1});
+  const res = await $.getUser({id: 1});
   return res.data;
 }
 

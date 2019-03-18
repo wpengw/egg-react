@@ -28,7 +28,7 @@ module.exports = app => {
       host: 'localhost',
       port: '3306',
       user: 'root',
-      password: '106540719',
+      password: 'root',
       database: 'egg_demo'
     },
     app: true,

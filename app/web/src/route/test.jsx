@@ -33,7 +33,7 @@ Test.propTypes = {
 const mapStateToProps = (state) => {
   const { homeInfo } = state;
   const userInfo = homeInfo.userInfo || {};
-  const topicList = homeInfo.topicList || {};
+  const topicList = homeInfo.topicList || [];
   return {
     topicList,
     userInfo

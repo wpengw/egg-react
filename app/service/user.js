@@ -3,8 +3,8 @@
 const Service = require('egg').Service;
 
 class UserService extends Service {
-  async find(uid) {
-    const user = await this.app.mysql.get('users', { uid });
+  async find(id) {
+    const user = await this.app.mysql.get('users', { id });
     // 假定这里还有一些复杂的计算，然后返回需要的信息。
     // const picture = await this.getPicture(uid);
 

@@ -7,7 +7,7 @@ const initState = {
 }
 
 export const homeInfo = (state = initState, action) => {
-    console.log(action);
+    // console.log(action);
     switch (action.type) {
       case GET_USER_INFO:
         return {

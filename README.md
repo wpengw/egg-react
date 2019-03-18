@@ -30,3 +30,4 @@ npm run build 或者 easy build
 
 [MIT](LICENSE)# egg-react
 # egg-react
+"# egg-react2" 
