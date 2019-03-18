@@ -6,10 +6,12 @@ export default class Header extends Component {
   }
 
   render() {
-    return <header className="header">
-      <div className="container"><h1>
-        <a href="/" className="router-link-active">Egg + Reactddd</a></h1>
-      </div>
-    </header>;
+    return (
+      <header className="header">
+        <div className="container"><h1>
+          <a href="/" className="router-link-active">Egg</a></h1>
+        </div>
+      </header>
+    );
   }
 }

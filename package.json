@@ -51,8 +51,12 @@
     "egg-webpack-react": "^2.0.0",
     "eslint-config-egg": "^5.1.1",
     "eslint-plugin-react": "^7.1.0",
+    "extract-text-webpack-plugin": "^3.0.2",
     "imagemin-webpack-plugin": "^2.0.0",
-    "ip": "^1.1.5"
+    "ip": "^1.1.5",
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0",
+    "thread-loader": "^2.1.2"
   },
   "engines": {
     "node": ">=6.0.0"
