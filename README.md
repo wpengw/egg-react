@@ -1,4 +1,4 @@
-# egg-react-asset-boilerplate
+<!-- # egg-react-asset-boilerplate
 
 基于 Egg + React + Webpack 前端渲染 Asset 骨架项目, 开发前请阅读 [asset 渲染](https://www.yuque.com/easy-team/egg-react/asset)
 
@@ -60,4 +60,4 @@ npm run build 或者 easy build
 ## License
 
 [MIT](LICENSE)# egg-react
-# egg-react
+# egg-react -->
