@@ -2,9 +2,7 @@ import '@babel/polyfill'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import Header from './component/header/header.jsx';
 import App from './route';
-// import store from './store';
 import configureStore from './store/configureStore'
 import rootSaga from './sagas'
 
@@ -16,7 +14,6 @@ if (EASY_ENV_IS_DEV) {
 }
 ReactDOM.render(
   <div>
-    <Header></Header>
     <Provider store={store}>
       <App url = { store.getState().url } />
     </Provider>

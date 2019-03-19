@@ -27,7 +27,7 @@ class Test extends Component {
 
 Test.propTypes = {
   userInfo: PropTypes.object.isRequired,
-  topicList: PropTypes.array.isRequired,
+  topicList: PropTypes.array.isRequired
 }
 
 const mapStateToProps = (state) => {

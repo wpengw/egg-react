@@ -1,11 +1,23 @@
 @import "./normalize.css";
 @import "./bootstrap.css";
-@import "./app.css";
 
 .container {
-  height: 100%;
   box-sizing: border-box;
   width: 1140px;
-  padding: 0 30px;
-  margin: 0 auto;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.row {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+.clear:after {
+  display: block;
+  content: '';
+  clear: both;
+}
+.mt30 {
+  margin-top: 30px!important;
 }

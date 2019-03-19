@@ -1,0 +1,80 @@
+
+ @import "../../../asset/style/global.css";
+ @import "../../../asset/style/common.scss";
+
+.leftSlider {
+  width: 170px;
+  float: left;
+  padding: 0 15px;
+  .tech-square {
+    margin-left: -10px;
+    .tech-square-item {
+      position: relative;
+      height: 34px;    
+      line-height: 34px;
+      border-radius: 4px;
+      font-size: 14px;
+      a:first-child {
+        @include verAlignWay();
+      }
+      .tech-square-item-icon {
+        width: 34px;
+        text-align: center;
+        img {
+          width: 16px;
+          height: 16px;
+        }
+      }
+      &:hover {
+        @include bgAlpha(0.1);
+      }
+      &:hover .hoverShow {
+        display: block;
+      }
+      .hoverShow {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 150px;
+        background: #fff;
+        width: 300px;
+        padding: 10px;
+        height: auto;
+        border-radius: 4px;
+        box-shadow: 2px 2px 10px 3px rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+}
+
+.topicListWrapper {
+  padding-left: 180px;
+  font-size: 14px;
+  .topicItem {
+    margin-bottom: 20px;
+    color: $fontC3;
+    &:hover .topicTitle {
+      color: $mainC;
+    }
+    .topicTitle {
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 28px;
+      color: $fontC4;
+      padding-bottom: 5px;
+      margin: 0;
+    }
+    .topicExcerpt {
+      
+    }
+    .itemMeta {
+      margin-top: 10px;
+      span, a {
+        padding-right: 10px;
+      }
+      a {
+        text-decoration: underline;
+      }
+    }
+  }
+}

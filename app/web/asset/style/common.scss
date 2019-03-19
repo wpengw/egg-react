@@ -1,0 +1,38 @@
+$mainC: #009A61;
+$mainBgC: #fafafa;
+$mainFontC: #212121;
+$fontC2: #888;
+$fontC3: #757575;
+$fontC4: #212121;
+
+@mixin lineHeight($h:20px) {
+    height: $h;
+    line-height: $h;
+}
+
+//垂直方式-默认居中
+@mixin  verAlignWay($way:center) {
+    display: flex;
+    display:  -webkit-flex;
+    -webkit-align-items: $way;
+    -moz-align-items: $way;
+    -ms-align-items: $way;
+    -o-align-items: $way;
+    align-items: $way;
+}
+
+@mixin bgAlpha($alpha: 0.5) {
+    background: rgba(0, 154, 97, $alpha);
+}
+
+
+a {
+    text-decoration: none!important;
+    color: $fontC2;
+    &:hover {
+        color: $fontC2;
+    }
+    &:focus {
+        color: $fontC2;
+    }
+}

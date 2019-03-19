@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
-import Home from './home';
-import About from './about';
-import Test from './test';
-
-import { Menu } from 'antd';
+import Header from '../component/header/header.jsx';
+import Home from '../container/home';
+import User from '../container/user';
+import About from '../container/about';
+import Test from '../container/test';
 
 class App extends Component {
   constructor(props) {
@@ -21,22 +21,15 @@ class App extends Component {
   render() {
     return <BrowserRouter>
       <div>
-        <Menu onClick={this.handleClick.bind(this)} selectedKeys={[this.state.current]} mode="horizontal">
-          <Menu.Item key="/">
-            <Link to="/">Home</Link>
-          </Menu.Item>
-          <Menu.Item key="/about">
-            <Link to="/about">About</Link>
-          </Menu.Item>
-          <Menu.Item key="/test">
-            <Link to="/test">test</Link>
-          </Menu.Item>
-        </Menu>
-        <Switch>
-          <Route path="/about" component={About}/>
-          <Route path="/test" component={Test}/>
-          <Route path="/" component={Home}/>
-        </Switch>
+        <Header></Header>
+        <div className="container mt30">
+          <Switch>
+            <Route path="/user/:id" component={User}/>
+            <Route path="/about" component={About}/>
+            <Route path="/test" component={Test}/>
+            <Route path="/" component={Home}/>
+          </Switch>
+        </div>
       </div>
     </BrowserRouter>;
   }
