@@ -1,5 +1,11 @@
 @import "./normalize.css";
-@import "./bootstrap.css";
+/* @import "./bootstrap.css"; */
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box
+}
 
 .container {
   box-sizing: border-box;
@@ -20,4 +26,38 @@
 }
 .mt30 {
   margin-top: 30px!important;
+}
+.ml20 {
+  margin-left: 20px!important;
+}
+
+.fl {
+  float: left;
+}
+.fr { 
+  float: right;
+}
+
+.btn {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 5px 15px;
+  font-size: 15px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none
+}
+.btn:focus,
+.btn.active {
+  outline: none!important;
 }

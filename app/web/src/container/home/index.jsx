@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'
+import { sendTopicListRequest } from '../../actions/topic'
 import './home.scss';
 import LeftSlider from './leftSlider';
 import TopicItem from './topicItem';
 
 class Home extends Component {
+  componentDidMount() {
+    const { dispatch } = this.props;
+    const params = {
+      // topicType: ''
+    }
+    dispatch(sendTopicListRequest(params))
+  }
   render() {
     const { topicList } = this.props
     return (
@@ -31,8 +39,8 @@ Home.propTypes = {
 }
 
 const mapStateToProps = (state) => {
-  const { homeInfo } = state;
-  const topicList = homeInfo.topicList || [];
+  const { topic } = state;
+  const topicList = topic.topicList || [];
   return {
     topicList
   }

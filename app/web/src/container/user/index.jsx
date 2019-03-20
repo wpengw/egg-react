@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { sendUserRequest } from '../../actions/user'
 
 class User extends Component {
+  componentDidMount() {
+    const { dispatch }=this.props;
+    dispatch(sendUserRequest({id: this.props.match.params.id}))
+  }
   render() {
     const { userInfo } = this.props
-    console.log(this.props.location.pathname);
     return(
       <div>
         <div>{userInfo.name}</div>
+        <div>{userInfo.age}</div>
       </div>
     )
   }
@@ -19,10 +24,8 @@ User.propTypes = {
 }
 
 const mapStateToProps = (state) => {
-  const { homeInfo } = state;
-  const userInfo = homeInfo.userInfo || {};
   return {
-    userInfo
+    userInfo: state.userInfo
   }
 }
 

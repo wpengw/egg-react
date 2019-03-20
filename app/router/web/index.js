@@ -9,4 +9,5 @@ module.exports = app => {
   const { user, topic } = controller;
   apiV1Router.get('/user', user.info);
   apiV1Router.get('/getAllTopicList', topic.getAllTopicList);
+  apiV1Router.get('/getTopicDetailById', topic.getTopicDetailById);
 };

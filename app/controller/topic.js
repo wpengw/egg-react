@@ -9,6 +9,17 @@ class TopicController extends Controller {
     const topicList = await ctx.service.topic.findAll();
     this.success(topicList);
   }
+
+  /**
+   * @查询topic详情
+   * @params { id  }
+  */
+  async getTopicDetailById() {
+    const { ctx } = this;
+    const id = ctx.query.id;
+    const topicDetail = await ctx.service.topic.findDetailById(id);
+    this.success(topicDetail);
+  }
 }
 
 module.exports = TopicController;

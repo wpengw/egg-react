@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux'
 import { homeInfo } from './home'
+import { userInfo } from './user'
+import { topic } from './topic'
 import { SELECT_REDDIT, REQUEST_POSTS, RECEIVE_POSTS } from '../actions'
 
 function selectedReddit(state = 'reactjs', action) {
@@ -49,9 +51,11 @@ function postsByReddit(state = {}, action) {
 }
 
 const rootReducer = combineReducers({
-  postsByReddit,
-  selectedReddit,
-  homeInfo
+  // postsByReddit,
+  // selectedReddit,
+  // homeInfo,
+  userInfo,
+  topic
 })
 
 export default rootReducer

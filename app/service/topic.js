@@ -14,6 +14,11 @@ class TopicService extends Service {
     });
     return topicList;
   }
+
+  async findDetailById(id) {
+    const topicDetail = await this.app.mysql.get('topics', { id });
+    return topicDetail;
+  }
 }
 
 module.exports = TopicService;

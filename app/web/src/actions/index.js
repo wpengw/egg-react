@@ -2,15 +2,7 @@ export const REQUEST_POSTS = 'REQUEST_POSTS'
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 export const SELECT_REDDIT = 'SELECT_REDDIT'
 export const INVALIDATE_REDDIT = 'INVALIDATE_REDDIT'
-export const GET_USER_INFO = 'GET_USER_INFO'
 export const GET_TOPIC_LIST = 'GET_TOPIC_LIST'
-
-export const getUserInfo = (userInfo) => {
-  return {
-    type: GET_USER_INFO,
-    userInfo 
-  }
-}
 
 export const getTopicListAction = (topicList) => {
   return {
@@ -18,9 +10,6 @@ export const getTopicListAction = (topicList) => {
     topicList 
   }
 }
-
-
-
 
 
 
