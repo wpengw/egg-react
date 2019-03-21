@@ -1,12 +1,7 @@
 export const REQ_USER_INFO_PARAM = 'REQ_USER_INFO_PARAM'
-export const RES_USER_INFO= 'RES_USER_INFO'
+export const RES_USER_INFO = 'RES_USER_INFO'
 
-
-/**
- * 
- * @param  {object} data
- * @param  {string} data.id  user_id
- */
+// 获取用户信息
 export const sendUserRequest = (params) => {
   return {type: REQ_USER_INFO_PARAM, params}
 }

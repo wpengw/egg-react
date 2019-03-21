@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './header.scss';
+import Register from '../register';
+
 export default class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      current: ''
+      current: '',
+      isShowLogin: false,
+      isShowRegister: false
     }
     this.handleClick = this.handleClick.bind(this);
+    this.handleClickLogin = this.handleClickLogin.bind(this);
+    this.handleClickRegister = this.handleClickRegister.bind(this);
+    this.handleHideRegister = this.handleHideRegister.bind(this);
   }
   componentDidMount() {
     this.setState({
@@ -15,7 +22,7 @@ export default class Header extends Component {
     })
   }
   render() {
-    const {current} = this.state;
+    const { current, isShowLogin, isShowRegister } = this.state;
     return (
       <header className="header">
         <nav className="container">
@@ -27,11 +34,15 @@ export default class Header extends Component {
               <Link to="/test" onClick={() => this.handleClick('test')} className={current == 'test' ? 'active' : null}>test</Link>
             </div>
             <div className="fr">
-              <button className="btn btn-default" to="/" onClick={() => this.handleClick()} >立即登录</button>
-              <button className="btn btn-primary ml20" to="/" onClick={() => this.handleClick()} >免费注册</button>
+              <button className="btn btn-default" onClick={() => this.handleClickLogin()} >立即登录</button>
+              <button className="btn btn-primary ml20" onClick={() => this.handleClickRegister()} >免费注册</button>
             </div>
           </div>
         </nav>
+        {
+          isShowRegister ? <Register handleHide={this.handleHideRegister} /> : null
+        }
+        
       </header>
     );
   }
@@ -40,5 +51,20 @@ export default class Header extends Component {
     this.setState({
       current
     });
+  }
+  handleClickLogin() {
+    this.setState({
+      isShowLogin: true
+    })
+  }
+  handleClickRegister() {
+    this.setState({
+      isShowRegister: true
+    })
+  }
+  handleHideRegister() {
+    this.setState({
+      isShowRegister: false
+    })
   }
 }

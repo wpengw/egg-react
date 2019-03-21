@@ -21,20 +21,22 @@ class App extends Component {
   }
 
   render() {
-    return <BrowserRouter>
-      <div>
-        <Header current={this.state.current}></Header>
-        <div className="container mt30">
-          <Switch>
-            <Route path="/user/:id" component={User}/>
-            <Route path="/topicDetail/:id" component={TopicDetail}/>
-            <Route path="/answer" component={Answer}/>
-            <Route path="/test" component={Test}/>
-            <Route path="/" component={Home}/>
-          </Switch>
+    return (
+      <BrowserRouter>
+        <div>
+          <Header current={this.state.current}></Header>
+          <div className="container mt30">
+            <Switch>
+              <Route path="/user/:id" component={User}/>
+              <Route path="/topicDetail/:id" component={TopicDetail}/>
+              <Route path="/answer" component={Answer}/>
+              <Route path="/test" component={Test}/>
+              <Route path="/" component={Home}/>
+            </Switch>
+          </div>
         </div>
-      </div>
-    </BrowserRouter>;
+      </BrowserRouter>
+    );
   }
 }
 

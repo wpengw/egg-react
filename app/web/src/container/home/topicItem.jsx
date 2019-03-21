@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { relativeTime } from '../../../util/tool';
 
 class LeftSlider extends Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class LeftSlider extends Component {
           <span>{ topicInfo.topNum } 赞</span>
           <span>{ topicInfo.pageView } 浏览</span>
           <a href={'/user/' + topicInfo.authorId}>{ topicInfo.authorName }</a>
-          <span className="time">一天前</span>
+          <span className="time">{ relativeTime(topicInfo.created_at) }</span>
         </div>
       </div>
     );

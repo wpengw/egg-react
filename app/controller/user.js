@@ -10,6 +10,19 @@ class UserController extends Controller {
     // ctx.body = userInfo;
     this.success(userInfo);
   }
+
+  // register
+  async postRegister() {
+    const { ctx, app } = this;
+    const params = {
+      name: ctx.request.body.name,
+      email: ctx.request.body.email,
+      password: ctx.request.body.password
+    }
+    const res = await ctx.service.user.register(params);
+    console.log('res------', res)
+    this.success(res);
+  }
 }
 
 module.exports = UserController;

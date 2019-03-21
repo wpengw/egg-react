@@ -4,7 +4,10 @@
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
-  box-sizing: border-box
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  padding: 0;
 }
 
 .container {
@@ -31,6 +34,9 @@
   margin-left: 20px!important;
 }
 
+.width100 {
+  width: 100%;
+}
 .fl {
   float: left;
 }
@@ -48,7 +54,9 @@
   background-image: none;
   border: 1px solid transparent;
   white-space: nowrap;
-  padding: 5px 15px;
+  padding: 0 15px;
+  height: 34px;
+  line-height: 34px;
   font-size: 15px;
   line-height: 1.42857143;
   border-radius: 4px;
@@ -57,7 +65,90 @@
   -ms-user-select: none;
   user-select: none
 }
-.btn:focus,
-.btn.active {
+button {
   outline: none!important;
+}
+
+input {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+}
+input:focus {
+  border: 1px solid #3b99fc;
+  -webkit-box-shadow: 0 0 3px 0px #3b99fc;
+  box-shadow: 0 0 3px 0px #3b99fc;
+  outline: none;
+}
+
+.modal-full-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+}
+.modal-full-page .modal-content {
+  margin: 30px auto;
+  width: 600px;
+}
+.modal-full-page .modal-header {
+  background-color: #f3f3f3;
+  overflow: hidden;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  padding: 15px;
+  border-bottom: 1px solid #e5e5e5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  line-height: 1.5;
+}
+.modal-full-page button.close {
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border: 0;
+  -webkit-appearance: none;
+  font-size: 18px;
+}
+.modal-full-page button.close:hover {
+  background: #e5e5e5;
+  opacity: 0.6;
+}
+.modal-full-page .modal-title {
+  font-size: 18px;
+}
+.modal-full-page .modal-body {
+  position: relative;
+  padding: 15px;
+  background: #fff;
+  border-radius: 0 0 6px 6px;
+}
+.modal-full-page .modal-body .login-wrapper {
+  padding: 0 100px;
+}
+.modal-full-page .modal-body .login-wrapper label {
+  display: block;
+  font-size: 14px;
+  line-height: 30px;
+}
+.modal-full-page .from-group {
+  margin-bottom: 10px;
+  line-height: 3;
 }
