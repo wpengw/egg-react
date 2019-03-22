@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './register.scss';
-import { postRegister } from '../../../api/user';
+import './login.scss';
+import { postLogin } from '../../../api/user';
 import { message } from 'antd';
 
 
@@ -10,11 +10,9 @@ export default class Register extends Component {
     super(props);
     this.state = {
       username: '',
-      email: '',
       password: ''
     }
     this.handelChangeName = this.handelChangeName.bind(this);
-    this.handelChangeEmail = this.handelChangeEmail.bind(this);
     this.handelChangePwd = this.handelChangePwd.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -26,7 +24,7 @@ export default class Register extends Component {
       <div className="modal-full-page register">
         <div className="modal-content">
           <div className="modal-header">
-            <h4 className="modal-title">注册</h4>
+            <h4 className="modal-title">登录</h4>
             <button type="button" className="close" onClick={ this.props.handleHide }>
               <span aria-hidden="true">×</span>
             </button>
@@ -34,20 +32,15 @@ export default class Register extends Component {
           <div className="modal-body">
             <div className="login-wrapper">
               <div className="from-group">
-                <label>你的名字</label>
+                <label>用户名 或 Email</label>
                 <input type="text" onChange={ e => this.handelChangeName(e) } placeholder="真实姓名或常用昵称"/>
               </div>
               <div className="from-group">
-                <label>邮箱</label>
-                <input type="text" onChange={ e => this.handelChangeEmail(e) } placeholder="正确的邮箱"/>
-              </div>
-              <div className="from-group">
                 <label>密码</label>
-                <input type="password" onChange={ e => this.handelChangepassword(e) } placeholder="不少于六位"/>
+                <input type="password" onChange={ e => this.handelChangePwd(e) } placeholder="不少于六位"/>
               </div>
               <div className="from-group">
-                <button className="btn btn-primary width100" onClick={ this.handleSubmit }>注册</button>
-                <button className="btn btn-default width100">已有账号登录</button>
+                <button className="btn btn-primary width100" onClick={ this.handleSubmit }>登录</button>
               </div>
             </div>
           </div>
@@ -61,11 +54,6 @@ export default class Register extends Component {
       username: e.target.value
     })
   }
-  handelChangeEmail(e) {
-    this.setState({
-      email: e.target.value
-    })
-  }
   handelChangePwd(e) {
     this.setState({
       password: e.target.value
@@ -76,10 +64,9 @@ export default class Register extends Component {
       let _state = this.state;
       const params = {
         username: _state.username,
-        email: _state.email,
         password: _state.password
       }
-      const res = await postRegister(params);
+      const res = await postLogin(params);
       if (res.code == 0) {
         this.props.handleHide();
         message.success(res.msg, 2);

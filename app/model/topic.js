@@ -28,12 +28,15 @@ module.exports = app => {
         type: DATE,
         defaultValue: NOW
       },
-      updated_at: DATE
+      updated_at: {
+        type: DATE,
+        defaultValue: NOW
+      }
     },
-    // {
-    //   freezeTableName: true, // Model 对应的表名将与model名相同
-    //   timestamps: false
-    // }
+    {
+      freezeTableName: true, // Model 对应的表名将与model名相同
+      timestamps: false
+    }
   );
   
   return Topic;

@@ -11,7 +11,17 @@ class TopicService extends Service {
       ]
     });
 
-    return topicList;
+    if (topicList.length >= 0) {
+      return {
+        code: 0,
+        data: topicList
+      }
+    } else {
+      return {
+        code: 1,
+        data: null
+      }
+    }
   }
 
   async findDetailById(id) {

@@ -1,7 +1,9 @@
 module.exports = app => {
-  // app.beforeStart(async function () {
-  //   await app.model.sync({ force: true });
-  // });
+  if (app.config.env === 'local') {
+    app.beforeStart(function*() {
+      yield app.model.sync({ force: false });
+    });
+  }
   return class AppController extends app.Controller {
     async index() {
       const { ctx } = this;

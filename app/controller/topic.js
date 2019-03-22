@@ -6,8 +6,9 @@ class TopicController extends Controller {
   async getAllTopicList() {
     const { ctx } = this;
     // const userId = ctx.query.uid;
-    const topicList = await ctx.service.topic.findAll();
-    this.success(topicList);
+    const res = await ctx.service.topic.findAll();
+
+    this.success(res);
   }
 
   /**

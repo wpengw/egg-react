@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './header.scss';
 import Register from '../register';
+import Login from '../login';
 
 export default class Header extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ export default class Header extends Component {
     this.handleClickLogin = this.handleClickLogin.bind(this);
     this.handleClickRegister = this.handleClickRegister.bind(this);
     this.handleHideRegister = this.handleHideRegister.bind(this);
+    this.handleHideLogin = this.handleHideLogin.bind(this);
   }
   componentDidMount() {
     this.setState({
@@ -26,12 +28,11 @@ export default class Header extends Component {
     return (
       <header className="header">
         <nav className="container">
-          <div className="row">
+          <div className="row clear">
             <div className="logo fl">Logo </div>
             <div className="linkList fl">
               <Link to="/" onClick={() => this.handleClick('')} className={current == '' ? 'active' : null}>首页</Link>
               <Link to="/answer" onClick={() => this.handleClick('answer')} className={current == 'answer' ? 'active' : null}>问答</Link>
-              <Link to="/test" onClick={() => this.handleClick('test')} className={current == 'test' ? 'active' : null}>test</Link>
             </div>
             <div className="fr">
               <button className="btn btn-default" onClick={() => this.handleClickLogin()} >立即登录</button>
@@ -40,7 +41,10 @@ export default class Header extends Component {
           </div>
         </nav>
         {
-          isShowRegister ? <Register handleHide={this.handleHideRegister} /> : null
+          isShowRegister ? <Register handleHide={ this.handleHideRegister } /> : null
+        }
+        {
+          isShowLogin ? <Login handleHide={ this.handleHideLogin }  /> : null
         }
         
       </header>
@@ -65,6 +69,11 @@ export default class Header extends Component {
   handleHideRegister() {
     this.setState({
       isShowRegister: false
+    })
+  }
+  handleHideLogin() {
+    this.setState({
+      isShowLogin: false
     })
   }
 }

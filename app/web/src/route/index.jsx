@@ -4,7 +4,6 @@ import Header from '../component/header/header.jsx';
 import Home from '../container/home';
 import User from '../container/user';
 import Answer from '../container/answer';
-import Test from '../container/test';
 import TopicDetail from '../container/topicDetail';
 
 class App extends Component {
@@ -30,7 +29,6 @@ class App extends Component {
               <Route path="/user/:id" component={User}/>
               <Route path="/topicDetail/:id" component={TopicDetail}/>
               <Route path="/answer" component={Answer}/>
-              <Route path="/test" component={Test}/>
               <Route path="/" component={Home}/>
             </Switch>
           </div>
