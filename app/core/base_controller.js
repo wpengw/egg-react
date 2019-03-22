@@ -8,7 +8,6 @@ class BaseController extends Controller {
   }
 
   success(res) {
-    console.log('res---success----:', res);
     this.ctx.body = {
       code: 0,
       data: res.data,

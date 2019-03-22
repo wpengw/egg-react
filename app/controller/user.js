@@ -81,6 +81,7 @@ class UserController extends Controller {
       this.error(res);
     }
   }
+  
 }
 
 module.exports = UserController;

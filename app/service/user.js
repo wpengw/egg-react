@@ -2,6 +2,7 @@
 
 const Service = require('egg').Service;
 const ms = require('ms');
+const Op = require('Sequelize').Op;
 
 class UserService extends Service {
   async find(id) {
@@ -23,19 +24,11 @@ class UserService extends Service {
   async register(params) {
     const { ctx } = this;
     const { username, email } = params;
-    // let user = await ctx.model.User.findOne({ where: { username, email } });
-    let resUsername = await ctx.model.User.findOne({ where: { username } });
-    let resEmail = await ctx.model.User.findOne({ where: { email } });
-    if (resUsername) {
+    let resUsers = await ctx.model.User.findAll({ where: { [Op.or]: [ {username},{email} ] } });
+    if (resUsers.length > 0) {
       return {
         code: 1,
-        msg: '用户名已存在!'
-      }
-    }
-    if (resEmail) {
-      return {
-        code: 1,
-        msg: '该邮箱已经存在!'
+        msg: '用户名已存在或该邮箱已经存在!'
       }
     }
     const res = await ctx.model.User.create(params);

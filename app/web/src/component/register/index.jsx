@@ -43,7 +43,7 @@ export default class Register extends Component {
               </div>
               <div className="from-group">
                 <label>密码</label>
-                <input type="password" onChange={ e => this.handelChangepassword(e) } placeholder="不少于六位"/>
+                <input type="password" onChange={ e => this.handelChangePwd(e) } placeholder="不少于六位"/>
               </div>
               <div className="from-group">
                 <button className="btn btn-primary width100" onClick={ this.handleSubmit }>注册</button>
