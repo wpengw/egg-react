@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux'
 import './header.scss';
 import Register from '../register';
 import Login from '../login';
+import { sendLoginOut } from '../../actions/user'
 
-export default class Header extends Component {
+class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,6 +19,7 @@ export default class Header extends Component {
     this.handleClickRegister = this.handleClickRegister.bind(this);
     this.handleHideRegister = this.handleHideRegister.bind(this);
     this.handleHideLogin = this.handleHideLogin.bind(this);
+    this.handleClickOut = this.handleClickOut.bind(this);
   }
   componentDidMount() {
     this.setState({
@@ -25,6 +28,8 @@ export default class Header extends Component {
   }
   render() {
     const { current, isShowLogin, isShowRegister } = this.state;
+    const { loginInfo } = this.props;
+    console.log(loginInfo);
     return (
       <header className="header">
         <nav className="container">
@@ -35,8 +40,21 @@ export default class Header extends Component {
               <Link to="/answer" onClick={() => this.handleClick('answer')} className={current == 'answer' ? 'active' : null}>问答</Link>
             </div>
             <div className="fr">
-              <button className="btn btn-default" onClick={() => this.handleClickLogin()} >立即登录</button>
-              <button className="btn btn-primary ml20" onClick={() => this.handleClickRegister()} >免费注册</button>
+              {
+                loginInfo.username ? 
+                  (
+                    <div >
+                      <span>{ loginInfo.username }</span>
+                      <button className="btn btn-default" onClick={() => this.handleClickOut()} >退出</button>
+                    </div>
+                  ): 
+                  (
+                    <div>
+                      <button className="btn btn-default" onClick={() => this.handleClickLogin()} >立即登录</button>
+                      <button className="btn btn-primary ml20" onClick={() => this.handleClickRegister()} >免费注册</button>
+                    </div>
+                  )
+              }
             </div>
           </div>
         </nav>
@@ -76,4 +94,17 @@ export default class Header extends Component {
       isShowLogin: false
     })
   }
+  handleClickOut() {
+    const { dispatch }=this.props;
+    dispatch(sendLoginOut());
+  }
 }
+
+const mapStateToProps = (state) => {
+  const { loginInfo } = state.userInfo;
+  return {
+    loginInfo: loginInfo || {}
+  }
+}
+
+export default connect(mapStateToProps)(Header);

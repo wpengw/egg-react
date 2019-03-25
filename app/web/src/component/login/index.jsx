@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './login.scss';
 import { postLogin } from '../../../api/user';
+import { sendLoginRequest } from '../../actions/user'
 import { message } from 'antd';
 
 
@@ -60,21 +61,30 @@ export default class Register extends Component {
     })
   }
   async handleSubmit() {
-    try {
-      let _state = this.state;
-      const params = {
-        username: _state.username,
-        password: _state.password
-      }
-      const res = await postLogin(params);
-      if (res.code == 0) {
-        this.props.handleHide();
-        message.success(res.msg, 2);
-      } else {
-        message.error(res.msg, 2);
-      }
-    } catch (err) {
-      console.log('register', err);
+    const { dispatch }=this.props;
+    let _state = this.state;
+    const params = {
+      username: _state.username,
+      password: _state.password
     }
+    dispatch(sendLoginRequest(params));
+    // try {
+    //   let _state = this.state;
+    //   const params = {
+    //     username: _state.username,
+    //     password: _state.password
+    //   }
+    //   const res = await postLogin(params);
+    //   if (res.code == 0) {
+    //     this.props.handleHide();
+    //     localStorage.setItem('username', res.data.username);
+    //     localStorage.setItem('id', res.data.id);
+    //     message.success(res.msg, 2);
+    //   } else {
+    //     message.error(res.msg, 2);
+    //   }
+    // } catch (err) {
+    //   console.log('register', err);
+    // }
   }
 }

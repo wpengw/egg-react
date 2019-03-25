@@ -14,6 +14,12 @@ export const postRegister = async (params) => {return await post('/api/v1/postRe
 export const postLogin = async (params) => {return await post('/api/v1/postLogin', params)};
 
 /**
+ * @退出
+ * @params { }
+ */
+export const postLoginOut = async (params) => {return await post('/api/v1/postLoginOut', params)};
+
+/**
  * @获取用户信息
  * @params { id  }
  */

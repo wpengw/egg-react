@@ -15,6 +15,7 @@ module.exports = (options, app) => {
       //验证客户端token是否合法
       if (id) {
         let redis_token = await app.redis.get(username) // 获取redis中的token
+        console.log('----------------------', redis_token, token)
         //验证是否为最新的token
         if (token === redis_token) {
           await next();

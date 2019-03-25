@@ -23,7 +23,7 @@ module.exports = app => {
         allowNull: false
       },
       authorName: STRING(32),
-      authorId: INTEGER,
+      authorId: STRING(64),
       created_at: {
         type: DATE,
         defaultValue: NOW

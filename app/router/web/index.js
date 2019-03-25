@@ -16,6 +16,7 @@ module.exports = app => {
   apiV1Router.get('/getUser', user.info); // 获取用户信息
   apiV1Router.post('/postRegister', user.postRegister); // 注册
   apiV1Router.post('/postLogin', user.postLogin); // 登录
+  apiV1Router.post('/postLoginOut', user.postLoginOut); // 退出
 
   /**
    * topic相关接口

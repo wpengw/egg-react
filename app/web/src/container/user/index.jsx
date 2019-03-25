@@ -9,23 +9,24 @@ class User extends Component {
     dispatch(sendUserRequest({id: this.props.match.params.id}))
   }
   render() {
-    const { userInfo } = this.props
+    const { infoDetail } = this.props
     return(
       <div>
-        <div>{userInfo.name}</div>
-        <div>{userInfo.age}</div>
+        <div>{infoDetail.username}</div>
+        <div>{infoDetail.id}</div>
       </div>
     )
   }
 }
 
 User.propTypes = {
-  userInfo: PropTypes.object.isRequired
+  infoDetail: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => {
+  const { infoDetail } = state.userInfo;
   return {
-    userInfo: state.userInfo
+    infoDetail: infoDetail || {}
   }
 }
 

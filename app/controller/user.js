@@ -6,9 +6,14 @@ class UserController extends Controller {
   async info() {
     const { ctx } = this;
     const userId = ctx.query.id;
-    const userInfo = await ctx.service.user.find(userId);
+    const res = await ctx.service.user.findById(userId);
     // ctx.body = userInfo;
-    this.success(userInfo);
+    if (res.code == 0) {
+      this.success(res);
+    } else {
+      this.error(res);
+    }
+    
   }
 
   // 注册
@@ -75,11 +80,22 @@ class UserController extends Controller {
 
       // 保存到redis
       app.redis.set(res.username, token);
-
       this.success(res);
     } else {
       this.error(res);
     }
+  }
+
+  // 退出
+  async postLoginOut() {
+    const { ctx, app } = this;
+    let username = ctx.cookies.get('username', {signed: false});
+    ctx.cookies.set('token', null);
+    app.redis.set(username, null);
+    
+    this.success({
+      data: null
+    });
   }
   
 }
