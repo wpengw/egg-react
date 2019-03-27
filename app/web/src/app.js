@@ -4,10 +4,10 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import App from './route';
 import configureStore from './store/configureStore'
-import rootSaga from './sagas'
+// import rootSaga from './store/sagas'
 
 const store = configureStore()
-store.runSaga(rootSaga)
+// store.runSaga(rootSaga)
 
 if (EASY_ENV_IS_DEV) {
   module.hot.accept();

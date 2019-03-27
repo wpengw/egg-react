@@ -1,33 +1,52 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { sendUserRequest } from '../../actions/user'
+import { bindActionCreators } from 'redux';
+
+// import {getSearchNextPageToken, getSearchResults} from '../../store/reducers/user';
+import * as userActions from '../../store/actions/user';
 
 class User extends Component {
-  componentDidMount() {
-    const { dispatch }=this.props;
-    dispatch(sendUserRequest({id: this.props.match.params.id}))
-  }
   render() {
-    const { infoDetail } = this.props
+    const { userDetail } = this.props
     return(
       <div>
-        <div>{infoDetail.username}</div>
-        <div>{infoDetail.id}</div>
+        <div>{userDetail.username}</div>
+        <div>{userDetail.id}</div>
       </div>
     )
+  }
+
+  componentDidMount() {
+    // const { dispatch }=this.props;
+    // dispatch(sendUserRequest({id: this.props.match.params.id}))
+    this.getUserDetail();
+  }
+
+  getUserDetail() {
+    const params = {id: this.props.match.params.id};
+    this.props.getUserDetail(params);
+    // if (this.props.youtubeApiLoaded) {
+    //   this.props.searchForVideos(searchQuery);
+    // }
   }
 }
 
 User.propTypes = {
-  infoDetail: PropTypes.object.isRequired
+  userDetail: PropTypes.object.isRequired
 }
 
-const mapStateToProps = (state) => {
-  const { infoDetail } = state.userInfo;
+const mapStateToProps = (state, props) => {
+  const { userDetail } = state.user;
   return {
-    infoDetail: infoDetail || {}
+    userDetail: userDetail || {}
   }
 }
 
-export default connect(mapStateToProps)(User);
+const mapDispatchToProps = (dispatch) => {
+  const getUserDetail = userActions.getUserDetail.request;
+  return bindActionCreators({ getUserDetail }, dispatch);
+}
+
+// export default connect(mapStateToProps)(User);
+export default connect(mapStateToProps, mapDispatchToProps)(User);

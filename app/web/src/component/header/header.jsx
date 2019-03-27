@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
 import './header.scss';
 import Register from '../register';
 import Login from '../login';
-import { sendLoginOut } from '../../actions/user'
+import { message } from 'antd';
+import * as userActions from '../../store/actions/user';
 
 class Header extends Component {
   constructor(props) {
@@ -28,8 +30,10 @@ class Header extends Component {
   }
   render() {
     const { current, isShowLogin, isShowRegister } = this.state;
-    const { loginInfo } = this.props;
-    console.log(loginInfo);
+    const { loginInfo, msg } = this.props;
+    if (msg) {
+      message.error(msg);
+    }
     return (
       <header className="header">
         <nav className="container">
@@ -43,7 +47,7 @@ class Header extends Component {
               {
                 loginInfo.username ? 
                   (
-                    <div >
+                    <div>
                       <span>{ loginInfo.username }</span>
                       <button className="btn btn-default" onClick={() => this.handleClickOut()} >退出</button>
                     </div>
@@ -59,12 +63,11 @@ class Header extends Component {
           </div>
         </nav>
         {
-          isShowRegister ? <Register handleHide={ this.handleHideRegister } /> : null
+          isShowRegister && !loginInfo.username ? <Register handleHide={ this.handleHideRegister } /> : null
         }
         {
-          isShowLogin ? <Login handleHide={ this.handleHideLogin }  /> : null
+          isShowLogin && !loginInfo.username ? <Login handleHide={ this.handleHideLogin }  /> : null
         }
-        
       </header>
     );
   }
@@ -95,16 +98,22 @@ class Header extends Component {
     })
   }
   handleClickOut() {
-    const { dispatch }=this.props;
-    dispatch(sendLoginOut());
+    this.props.postLoginOut();
   }
 }
 
 const mapStateToProps = (state) => {
-  const { loginInfo } = state.userInfo;
+  console.log(state);
+  const { loginInfo, msg } = state.user;
   return {
-    loginInfo: loginInfo || {}
+    loginInfo,
+    msg
   }
 }
 
-export default connect(mapStateToProps)(Header);
+const mapDispatchToProps = (dispatch) => {
+  const postLoginOut = userActions.postLoginOut.request;
+  return bindActionCreators({ postLoginOut }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

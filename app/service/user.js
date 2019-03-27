@@ -11,10 +11,7 @@ class UserService extends Service {
     if(user) {
       return {
         code: 0,
-        data: {
-          username: user.username,
-          id: user.id
-        }
+        data: user
       }
     } else {
       return {

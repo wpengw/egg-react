@@ -1,6 +1,7 @@
 import { takeEvery, put, call, take } from 'redux-saga/effects'
 import {
   getUser,
+  postLogin,
   postLoginOut
 } from '../../../api/user';
 
@@ -15,18 +16,29 @@ import {
 
 // 登录
 export const getUserLoginApi = async (params) => {
-  const res = await getUser(params);
-  return res.data;
+  const res = await postLogin(params);
+  if (res.code === 0) {
+    localStorage.setItem('username', res.data.username);
+    localStorage.setItem('id', res.data.id);
+    return res.data;
+  } else {
+    return res;
+  }
 }
 export const setUserLoginFlow = function* () {
   const request = yield take(REQ_USER_LOGIN_PARAM); // 接口所需的获取参数
-  const loginInfo = yield call(getUserLoginApi, request);
+  
+  const loginInfo = yield call(getUserLoginApi, request.params);
   yield put(setLoginInfo(loginInfo))
 }
 
 // 退出
 export const postLoginOutApi = async (params) => {
   const res = await postLoginOut(params);
+  if (res.code === 0) {
+    localStorage.removeItem('username');
+    localStorage.removeItem('id');
+  }
   return res.data;
 }
 export const setLoginOutFlow = function* () {
@@ -35,10 +47,8 @@ export const setLoginOutFlow = function* () {
   yield put(setLoginOut(outInfo))
 }
 
-
 // 获取用户信息
 export const getUserInfoApi = async (params) => {
-  console.log(params);
   const res = await getUser(params);
   return res.data;
 }

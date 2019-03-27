@@ -7,8 +7,7 @@ export const RES_LOGIN_OUT = 'RES_LOGIN_OUT';
 
 //登录
 export const sendLoginRequest = (params) => {
-  console.log(params);
-  return {type: REQ_USER_LOGIN_PARAM, params}
+  return { type: REQ_USER_LOGIN_PARAM, params}
 }
 export const setLoginInfo = (loginInfo) => {
   return {type: RES_USER_LOGIN, loginInfo}

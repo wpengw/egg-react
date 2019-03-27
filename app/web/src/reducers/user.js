@@ -35,7 +35,7 @@ export const userInfo = (state = initState, action) => {
   case RES_USER_LOGIN:
     return {
       ...state,
-      // loginInfo: action.loginInfo
+      loginInfo: action.loginInfo
     }
   case RES_LOGIN_OUT: 
     return {

@@ -9,7 +9,6 @@ import TopicDetail from '../container/topicDetail';
 class App extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props);
     this.state = { current: this.props.url };
   }
 

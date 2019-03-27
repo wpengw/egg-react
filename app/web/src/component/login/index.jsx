@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
 import './login.scss';
-import { postLogin } from '../../../api/user';
-import { sendLoginRequest } from '../../actions/user'
+// import { postLogin } from '../../../api/user';
+// import { sendLoginRequest } from '../../actions/user'
+import * as userActions from '../../store/actions/user';
 import { message } from 'antd';
 
 
-export default class Register extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -61,30 +64,27 @@ export default class Register extends Component {
     })
   }
   async handleSubmit() {
-    const { dispatch }=this.props;
+    // const { dispatch } = this.props;
     let _state = this.state;
     const params = {
       username: _state.username,
       password: _state.password
     }
-    dispatch(sendLoginRequest(params));
-    // try {
-    //   let _state = this.state;
-    //   const params = {
-    //     username: _state.username,
-    //     password: _state.password
-    //   }
-    //   const res = await postLogin(params);
-    //   if (res.code == 0) {
-    //     this.props.handleHide();
-    //     localStorage.setItem('username', res.data.username);
-    //     localStorage.setItem('id', res.data.id);
-    //     message.success(res.msg, 2);
-    //   } else {
-    //     message.error(res.msg, 2);
-    //   }
-    // } catch (err) {
-    //   console.log('register', err);
-    // }
+    this.props.postLogin(params);
   }
 }
+
+
+const mapStateToProps = (state, props) => {
+  const { loginInfo } = state.user;
+  return {
+    loginInfo
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  const postLogin = userActions.postLogin.request;
+  return bindActionCreators({ postLogin }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
