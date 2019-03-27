@@ -29,11 +29,12 @@ export default function (state = initState, action) {
   console.log('action', action, GET_USET_DETAIL[SUCCESS]);
   switch (action.type) {
     case GET_USET_DETAIL[SUCCESS]:
-        return {
-          ...state,
-          msg: '',
-          userDetail: action.response || {}
-        };
+      return reduceSuccess(state, 'userDetail', action)
+        // return {
+        //   ...state,
+        //   msg: '',
+        //   userDetail: action.response || {}
+        // };
     case POST_LOGIN[SUCCESS]:
         return reducePostLogin(state, action.response);
     case POST_LOGIN_OUT[SUCCESS]:
@@ -73,19 +74,6 @@ function reducePostLoginOut(state, res) {
   return reduceSuccess(state, 'loginInfo', {});
 }
 
-function reduceSearchForVideos(response, searchQuery, prevState) {
-  let searchResults = response.items.map(item => ({...item, id: item.id.videoId}));
-  if (prevState.query === searchQuery) {
-    const prevResults = prevState.results || [];
-    searchResults = prevResults.concat(searchResults);
-  }
-  return {
-    totalResults: response.pageInfo.totalResults,
-    nextPageToken: response.nextPageToken,
-    query: searchQuery,
-    results: searchResults
-  };
-}
 
 /*
   Selectors
