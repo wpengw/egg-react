@@ -1,0 +1,67 @@
+
+ @import "../../../asset/style/global.css";
+ @import "../../../asset/style/common.scss";
+
+.topic-detail {
+  .detail-title {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: $mainFontC;
+  }
+}
+
+.hljs{display:block;overflow-x:auto;padding:.5em;color:#383a42!important;background:#fafafa!important}.hljs-comment,.hljs-quote{color:#a0a1a7!important;font-style:italic}.hljs-doctag,.hljs-keyword,.hljs-formula{color:#a626a4!important}.hljs-section,.hljs-name,.hljs-selector-tag,.hljs-deletion,.hljs-subst{color:#e45649!important}.hljs-literal{color:#0184bb!important}.hljs-string,.hljs-regexp,.hljs-addition,.hljs-attribute,.hljs-meta-string{color:#50a14f!important}.hljs-built_in,.hljs-class .hljs-title{color:#c18401!important}.hljs-attr,.hljs-variable,.hljs-template-variable,.hljs-type,.hljs-selector-class,.hljs-selector-attr,.hljs-selector-pseudo,.hljs-number{color:#986801!important}.hljs-symbol,.hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-title{color:#4078f2!important}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:bold}.hljs-link{text-decoration:underline}
+pre {
+  display: block;
+  padding: 10px;
+  margin: 0 0 10px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #abb2bf;
+  background: #F6F6F6;
+  // background: #282c34;
+  word-break: break-all;
+  word-wrap: break-word;
+  overflow: auto;
+  border-radius: 4px;
+}
+h1,h2,h3,h4,h5,h6{
+  margin-top: 1em;
+  /* margin-bottom: 1em; */
+}
+strong {
+  font-weight: bold;
+}
+
+p > code:not([class]) {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #c7254e;
+  background-color: #f9f2f4;
+  border-radius: 4px;
+}
+p img{
+  /* 图片居中 */
+  margin: 0 auto;
+  display: flex;
+}
+
+#content {
+  font-family: Menlo,Monaco,Consolas,Courier New,monospace;
+  font-size: 16px;
+  line-height: 30px;
+}
+
+#content .desc ul,#content .desc ol {
+  color: #333333;
+  margin: 1.5em 0 0 25px;
+}
+
+#content .desc h1, #content .desc h2 {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+#content .desc a {
+  color: #009a61;
+}

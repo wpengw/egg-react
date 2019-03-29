@@ -9,7 +9,6 @@ import { Input, Select } from 'antd';
 import { message } from 'antd';
 
 const Option = Select.Option;
-// const ReactMarkdown = require('react-markdown');
 
 const selectBefore = (
   <Select defaultValue="1" style={{ width: 80 }}>
@@ -18,7 +17,6 @@ const selectBefore = (
     <Option value="3">翻译</Option>
   </Select>
 );
-const input = '# This is a header\n\nAnd this is a paragraph'
 
 class CreateTopic extends Component {
   constructor(props) {
@@ -48,7 +46,6 @@ class CreateTopic extends Component {
         </div>
 
         <Editor value={content} onChange={ this.handleChangeContent.bind(this) } />
-        {/* <ReactMarkdown source={input} /> */}
         <div className="create-footer">
           <button className="btn btn-primary fr" onClick={ this.handleSave }>发布文章</button>
         </div>
@@ -76,6 +73,7 @@ class CreateTopic extends Component {
   }
   handleSave() {
     const _st = this.state;
+    console.log(_st);
     const params = {
       authorId: this.props.loginInfo.id,
       authorName: this.props.loginInfo.username,
@@ -96,7 +94,7 @@ const mapStateToProps = (state) => {
   console.log(state);
   const { topic, user } = state;
   if (topic.msg) {
-    message.error(msg);
+    message.error(topic.msg);
     return;
   }
   return {
