@@ -4,8 +4,12 @@ import { fork, take } from 'redux-saga/effects';
 // import * as api from '../api/youtube-api';
 import * as api from '../../../api/user';
 import { fetchEntity } from './index';
-import { param } from 'change-case';
 
+
+export const postRegisterApi = function* (params) {
+  const request = yield api.postRegister(params);
+  yield fetchEntity(request, userActions.postRegister);
+}
 
 export const postLoginApi = function* (params) {
   const request = yield api.postLogin(params);
@@ -27,9 +31,18 @@ export const getUserDetailApi = function* (params) {
 /******************************************************************************/
 /******************************* WATCHERS *************************************/
 /******************************************************************************/
+export const postRegister = function* () {
+  while (true) {
+    const params = yield take(userActions.POST_REGISTER[REQUEST]);
+    delete params.type;
+    yield fork(postRegisterApi, params);
+  }
+}
+
 export const postLogin = function* () {
   while (true) {
     const params = yield take(userActions.POST_LOGIN[REQUEST]);
+    delete params.type;
     yield fork(postLoginApi, params);
   }
 }
@@ -37,6 +50,7 @@ export const postLogin = function* () {
 export const postLoginOut = function* () {
   while (true) {
     const params = yield take(userActions.POST_LOGIN_OUT[REQUEST]);
+    delete params.type;
     yield fork(postLoginOutApi, params);
   }
 }
@@ -44,6 +58,7 @@ export const postLoginOut = function* () {
 export const getUserDetail = function* () {
   while (true) {
     const params = yield take(userActions.GET_USET_DETAIL[REQUEST]);
+    delete params.type;
     yield fork(getUserDetailApi, params);
   }
 }

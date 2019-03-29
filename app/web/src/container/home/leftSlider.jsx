@@ -36,7 +36,7 @@ class LeftSlider extends Component {
 
 
 const mapStateToProps = state => {
-  console.log('mapStateToProps', state);
+  // console.log('mapStateToProps', state);
   return {
     list: state.list
   };

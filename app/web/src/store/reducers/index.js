@@ -4,9 +4,11 @@ import {combineReducers} from 'redux';
 // import channelsReducer from './channels';
 // import commentsReducer from './comments';
 import userReducer from './user';
+import topicReducer from './topic';
 
 export default combineReducers({
-  user: userReducer
+  user: userReducer,
+  topic: topicReducer
 //   api: apiReducer,
 //   videos: videosReducer,
 //   channels: channelsReducer,

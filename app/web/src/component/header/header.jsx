@@ -31,14 +31,11 @@ class Header extends Component {
   render() {
     const { current, isShowLogin, isShowRegister } = this.state;
     const { loginInfo, msg } = this.props;
-    if (msg) {
-      message.error(msg);
-    }
     return (
       <header className="header">
         <nav className="container">
           <div className="row clear">
-            <div className="logo fl">Logo </div>
+            <Link to="/" className="logo fl">Logo </Link>
             <div className="linkList fl">
               <Link to="/" onClick={() => this.handleClick('')} className={current == '' ? 'active' : null}>首页</Link>
               <Link to="/answer" onClick={() => this.handleClick('answer')} className={current == 'answer' ? 'active' : null}>问答</Link>
@@ -48,7 +45,13 @@ class Header extends Component {
                 loginInfo.username ? 
                   (
                     <div>
-                      <span>{ loginInfo.username }</span>
+                      <button className="btn  btn-default create">
+                        创建
+                        <ul className="hoverShow">
+                          <li><a href="/create/topic">写文章</a></li>
+                          <li><a href="">记笔记</a></li>
+                        </ul>
+                      </button>
                       <button className="btn btn-default" onClick={() => this.handleClickOut()} >退出</button>
                     </div>
                   ): 
@@ -63,7 +66,7 @@ class Header extends Component {
           </div>
         </nav>
         {
-          isShowRegister && !loginInfo.username ? <Register handleHide={ this.handleHideRegister } /> : null
+          isShowRegister ? <Register handleHide={ this.handleHideRegister } /> : null
         }
         {
           isShowLogin && !loginInfo.username ? <Login handleHide={ this.handleHideLogin }  /> : null
@@ -103,8 +106,10 @@ class Header extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   const { loginInfo, msg } = state.user;
+  if (msg) {
+    message.error(msg);
+  }
   return {
     loginInfo,
     msg

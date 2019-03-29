@@ -7,13 +7,13 @@ class BaseController extends Controller {
     return this.ctx.session.user;
   }
 
-  success(res) {
-    this.ctx.body = {
-      code: 0,
-      data: res.data,
-      msg: res.msg || 'success'
-    };
-  }
+  // success(res) {
+  //   this.ctx.body = {
+  //     code: 0,
+  //     data: res.data,
+  //     msg: res.msg || 'success'
+  //   };
+  // }
 
   error(data) {
     this.ctx.body = {

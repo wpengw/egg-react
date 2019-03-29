@@ -5,6 +5,7 @@ import Home from '../container/home';
 import User from '../container/user';
 import Answer from '../container/answer';
 import TopicDetail from '../container/topicDetail';
+import CreateTopic from '../container/createTopic';
 
 class App extends Component {
   constructor(props) {
@@ -23,12 +24,13 @@ class App extends Component {
       <BrowserRouter>
         <div>
           <Header current={this.state.current}></Header>
-          <div className="container mt30">
+          <div className="mt30">
             <Switch>
-              <Route path="/user/:id" component={User}/>
-              <Route path="/topicDetail/:id" component={TopicDetail}/>
-              <Route path="/answer" component={Answer}/>
-              <Route path="/" component={Home}/>
+              <Route path="/user/:id" component={ User }/>
+              <Route path="/topicDetail/:id" component={ TopicDetail }/>
+              <Route path="/answer" component={ Answer }/>
+              <Route path="/create/topic" component={ CreateTopic }/>
+              <Route path="/" component={ Home }/>
             </Switch>
           </div>
         </div>

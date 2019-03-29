@@ -1,0 +1,59 @@
+
+ @import "../../../asset/style/global.css";
+ @import "../../../asset/style/common.scss";
+
+.create-wrapper {
+  .target-wapper {
+    position: relative;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    display: block;
+    color: #555;
+    // vertical-align: middle;
+    border-radius: 4px;
+    max-width: 100%;
+    cursor: text;
+    width: 100%;
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 2px 6px;
+    margin: 20px 0;
+    .target-ipt {
+        display: inline-block;
+        border: none;
+        box-shadow: none;
+        width: 300px;
+    }
+    .target-item {
+        display: inline-block;
+        color: $mainC;
+        background-color: #e7f2ed;
+        font-size: 13px;
+        text-align: center;
+        margin-right: .5rem;
+        padding: 0 6px;
+        height: 22px;
+        line-height: 22px;
+        margin-bottom: 5px;
+        .remove {
+            margin-left: 6px;
+            cursor: pointer;
+        }
+    }
+  }
+  .create-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+    //   height: 80px;
+      padding: 20px 30px;
+      background: #ccc;
+  }
+}
+.for-container .for-editor .for-editor-wrapper, .for-container .for-editor .for-panel .for-preview {
+    height: 100%;
+}

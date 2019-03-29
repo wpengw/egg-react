@@ -18,6 +18,8 @@ module.exports = app => {
           max: 64
         }
       },
+      topicType: INTEGER,
+      targets: STRING(255),
       content: {
         type: STRING,
         allowNull: false

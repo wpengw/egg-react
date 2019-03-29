@@ -21,7 +21,7 @@ module.exports = app => {
   /**
    * topic相关接口
    */
-  apiV1Router.get('/getAllTopicList', UserInterceptor, topic.getAllTopicList); // 获取topicList
+  apiV1Router.get('/getAllTopicList', topic.getAllTopicList); // 获取topicList
   apiV1Router.get('/getTopicDetailById', topic.getTopicDetailById); // 查看topicDetail
-  
+  apiV1Router.post('/postCreateTopic', UserInterceptor, topic.postCreateTopic); // 创建tipic
 };

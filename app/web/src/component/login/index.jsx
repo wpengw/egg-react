@@ -2,11 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
-import './login.scss';
-// import { postLogin } from '../../../api/user';
-// import { sendLoginRequest } from '../../actions/user'
 import * as userActions from '../../store/actions/user';
-import { message } from 'antd';
+import './login.scss';
 
 
 class Login extends Component {
@@ -64,7 +61,6 @@ class Login extends Component {
     })
   }
   async handleSubmit() {
-    // const { dispatch } = this.props;
     let _state = this.state;
     const params = {
       username: _state.username,
@@ -73,7 +69,6 @@ class Login extends Component {
     this.props.postLogin(params);
   }
 }
-
 
 const mapStateToProps = (state, props) => {
   const { loginInfo } = state.user;

@@ -1,8 +1,16 @@
 import {createAction, createRequestTypes, FAILURE, REQUEST, SUCCESS} from './index';
 
+export const POST_REGISTER = createRequestTypes('POST_REGISTER');
 export const POST_LOGIN = createRequestTypes('POST_LOGIN');
 export const POST_LOGIN_OUT = createRequestTypes('POST_LOGIN_OUT');
 export const GET_USET_DETAIL = createRequestTypes('GET_USET_DETAIL');
+
+// 注册
+export const postRegister = {
+  request: (params) => createAction(POST_REGISTER[REQUEST], params),
+  success: (response) => createAction(POST_REGISTER[SUCCESS], {response}),
+  failure: (response) => createAction(POST_REGISTER[FAILURE],  {response})
+};
 
 // 登录
 export const postLogin = {

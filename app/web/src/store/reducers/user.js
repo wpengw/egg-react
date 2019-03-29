@@ -1,4 +1,4 @@
-import { GET_USET_DETAIL, POST_LOGIN, POST_LOGIN_OUT } from '../actions/user';
+import { GET_USET_DETAIL, POST_LOGIN, POST_LOGIN_OUT, POST_REGISTER } from '../actions/user';
 import {REQUEST, SUCCESS, FAILURE} from '../actions';
 
 const initState = {
@@ -26,23 +26,19 @@ if (getCookie('token')) {
 }
 
 export default function (state = initState, action) {
-  console.log('action', action, GET_USET_DETAIL[SUCCESS]);
   switch (action.type) {
+    case POST_REGISTER[SUCCESS]:
+      return reduceSuccess(state, action.response);
+    case POST_REGISTER[FAILURE]:
+      return reduceFailure(state, action.response);
     case GET_USET_DETAIL[SUCCESS]:
-      return reduceSuccess(state, 'userDetail', action)
-        // return {
-        //   ...state,
-        //   msg: '',
-        //   userDetail: action.response || {}
-        // };
+      return reduceSuccess(state, 'userDetail', action.response);
     case POST_LOGIN[SUCCESS]:
-        return reducePostLogin(state, action.response);
-    case POST_LOGIN_OUT[SUCCESS]:
-        return reducePostLoginOut(state, action.response);
+      return reducePostLogin(state, action.response);
     case POST_LOGIN[FAILURE]:
-      return reduceFailure(state, action.response)
-    // case POST_LOGIN[FAILURE]:
-    //   return reduceFailure(state, action.response)
+      return reduceFailure(state, action.response);
+    case POST_LOGIN_OUT[SUCCESS]:
+      return reducePostLoginOut(state, action.response);
     default:
       return state;
   }

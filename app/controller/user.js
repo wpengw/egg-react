@@ -3,17 +3,11 @@ const validator = require('validator');
 const Controller = require('../core/base_controller');
 
 class UserController extends Controller {
+  // 查询用户详细信息
   async info() {
     const { ctx } = this;
     const userId = ctx.query.id;
-    const res = await ctx.service.user.findById(userId);
-    // ctx.body = userInfo;
-    if (res.code == 0) {
-      this.success(res);
-    } else {
-      this.error(res);
-    }
-    
+    await ctx.service.user.findById(userId);
   }
 
   // 注册
@@ -34,19 +28,10 @@ class UserController extends Controller {
       msg = '邮箱不合法。';
     }
     if (msg) {
-      this.error({
-        code: 3, 
-        msg
-      })
+      ctx.failure(msg)
       return;
     }
-
-    const res = await ctx.service.user.register({ username, email, password });
-    if (res.code === 0) {
-      this.success(res);
-    } else {
-      this.error(res);
-    }
+    await ctx.service.user.register({ username, email, password });
   }
 
   // 登录
@@ -60,30 +45,10 @@ class UserController extends Controller {
       msg = '登录名或密码不能为空！';
     }
     if (msg) {
-      this.error({
-        code: 3, 
-        msg
-      })
+      ctx.failure(msg)
       return;
     }
-
-    const res = await ctx.service.user.login({ username, password });
-    if (res.code === 0) {
-      const token = ctx.helper.generateToken({id: res.data.id}, 7200);
-      res.data.token = token;
-      ctx.cookies.set('token', token, {
-        maxAge: 7200 * 1000,
-        // path: '/',
-        // domain: 'localhost',
-        httpOnly: false
-      });
-
-      // 保存到redis
-      app.redis.set(res.username, token);
-      this.success(res);
-    } else {
-      this.error(res);
-    }
+    await ctx.service.user.login({ username, password });
   }
 
   // 退出
@@ -92,10 +57,7 @@ class UserController extends Controller {
     let username = ctx.cookies.get('username', {signed: false});
     ctx.cookies.set('token', null);
     app.redis.set(username, null);
-    
-    this.success({
-      data: null
-    });
+    ctx.success(null, '退成成功！');
   }
   
 }

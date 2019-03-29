@@ -3,30 +3,54 @@
 const Service = require('egg').Service;
 
 class TopicService extends Service {
+  // 获取 topicList
   async findAll() {
     const { ctx } = this;
-    const topicList = await ctx.model.Topic.findAll({
-      order: [
-        ['id', 'DESC']
-      ]
-    });
+    try {
+      const res = await ctx.model.Topic.findAll({
+        order: [
+          ['id', 'DESC']
+        ]
+      });
 
-    if (topicList.length >= 0) {
-      return {
-        code: 0,
-        data: topicList
+      if (res.length >= 0) {
+        ctx.success(res);
+      } else {
+        ctx.failure('没找到数据！');
       }
-    } else {
-      return {
-        code: 1,
-        data: null
-      }
+    } catch (err) {
+      ctx.failure('系统异常！！', 4000);
     }
   }
 
+  // 查询详情
   async findDetailById(id) {
-    const topicDetail = await this.app.mysql.get('topics', { id });
-    return topicDetail;
+    const { ctx } = this;
+    try {
+      const res = await ctx.model.Topic.findOne({ where: { id } });
+      if (res) {
+        ctx.success(res);
+      } else {
+        ctx.failure('没找到数据！');
+      }
+    } catch (err) {
+      ctx.failure('系统异常！！', 4000);
+    }
+  }
+  
+  // 新建topic
+  async createTopic(params) {
+    const { ctx } = this;
+    try {
+      const res = await ctx.model.Topic.create(params);
+      if (res) {
+        ctx.success(res.title);
+      } else {
+        ctx.failure('新建失败！');
+      }
+    } catch (err) {
+      ctx.failure('系统异常！！', 4000);
+    }
   }
 }
 

@@ -1,18 +1,16 @@
 import {all, call, put, fork} from 'redux-saga/effects';
-// import {watchMostPopularVideos, watchMostPopularVideosByCategory, watchVideoCategories} from './video';
-// import {watchWatchDetails} from './watch';
-// import {watchCommentThread} from './comment';
-import { getUserDetail, postLogin, postLoginOut } from './user';
+// import {watchMostPopularVideos, watchMostPopularVideosBy
+import { getUserDetail, postLogin, postLoginOut, postRegister } from './user';
+import { getTopicListFlow, getTopicDetailFlow, postCreateTopicFlow } from './topic';
 export default function* () {
   yield all([
-    // fork(watchMostPopularVideos),
-    // fork(watchVideoCategories),
-    // fork(watchMostPopularVideosByCategory),
-    // fork(watchWatchDetails),
-    // fork(watchCommentThread),
+    fork(postRegister),
     fork(postLogin),
     fork(postLoginOut),
-    fork(getUserDetail)
+    fork(getUserDetail),
+    fork(getTopicListFlow),
+    fork(getTopicDetailFlow),
+    fork(postCreateTopicFlow)
   ]);
 }
 

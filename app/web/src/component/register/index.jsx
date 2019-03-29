@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
+import * as userActions from '../../store/actions/user';
 import './register.scss';
 import { postRegister } from '../../../api/user';
 import { message } from 'antd';
 
 
-export default class Register extends Component {
+class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -72,6 +74,13 @@ export default class Register extends Component {
     })
   }
   async handleSubmit() {
+    // let _state = this.state;
+    // const params = {
+    //   username: _state.username,
+    //   email: _state.email,
+    //   password: _state.password
+    // }
+    // this.props.postRegister(params);
     try {
       let _state = this.state;
       const params = {
@@ -91,3 +100,18 @@ export default class Register extends Component {
     }
   }
 }
+
+export default Register;
+// const mapStateToProps = (state, props) => {
+//   const { loginInfo } = state.user;
+//   return {
+//     loginInfo
+//   }
+// }
+
+// const mapDispatchToProps = (dispatch) => {
+//   const postRegister = userActions.postRegister.request;
+//   return bindActionCreators({ postRegister }, dispatch);
+// }
+
+// export default connect(mapStateToProps, mapDispatchToProps)(Register);

@@ -6,9 +6,7 @@ class TopicController extends Controller {
   async getAllTopicList() {
     const { ctx } = this;
     // const userId = ctx.query.uid;
-    const res = await ctx.service.topic.findAll();
-
-    this.success(res);
+    await ctx.service.topic.findAll();
   }
 
   /**
@@ -18,8 +16,24 @@ class TopicController extends Controller {
   async getTopicDetailById() {
     const { ctx } = this;
     const id = ctx.query.id;
-    const topicDetail = await ctx.service.topic.findDetailById(id);
-    this.success(topicDetail);
+    await ctx.service.topic.findDetailById(id);
+  }
+
+  async postCreateTopic() {
+    const { ctx } = this;
+    const { authorId, authorName, title, topicType, targets, content } = ctx.request.body;
+
+    let msg = '';
+    if ([ authorId, authorName, title, topicType, targets, content ].some(item => {
+      return item === '';
+    })) {
+      msg = '信息不完整。';
+    }
+    if (msg) {
+      ctx.failure(msg)
+      return;
+    }
+    await ctx.service.topic.createTopic({ authorId, authorName, title, topicType, targets, content});
   }
 }
 
