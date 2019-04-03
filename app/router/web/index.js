@@ -9,7 +9,7 @@ module.exports = app => {
 
   const apiV1Router = app.router.namespace('/api/v1');
   const { controller, middleware } = app;
-  const { user, topic } = controller;
+  const { user, topic, target } = controller;
   /**
    * 用户相关接口
    */
@@ -24,4 +24,9 @@ module.exports = app => {
   apiV1Router.get('/getAllTopicList', topic.getAllTopicList); // 获取topicList
   apiV1Router.get('/getTopicDetailById', topic.getTopicDetailById); // 查看topicDetail
   apiV1Router.post('/postCreateTopic', UserInterceptor, topic.postCreateTopic); // 创建tipic
+
+  /**
+   * target相关接口
+   */
+  apiV1Router.get('/getAllTarget', target.getAllTarget); // 获取target
 };

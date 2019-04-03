@@ -5,8 +5,15 @@ const Controller = require('../core/base_controller');
 class TopicController extends Controller {
   async getAllTopicList() {
     const { ctx } = this;
-    // const userId = ctx.query.uid;
-    await ctx.service.topic.findAll();
+    const target = ctx.query.target;
+    const topicType = ctx.query.topicType;
+    if (target) {
+      await ctx.service.topic.findByTarget(target);
+    } else if (topicType) {
+      await ctx.service.topic.findByTopicType(topicType);
+    } else {
+      await ctx.service.topic.findAll();
+    }
   }
 
   /**

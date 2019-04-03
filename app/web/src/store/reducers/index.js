@@ -5,13 +5,10 @@ import {combineReducers} from 'redux';
 // import commentsReducer from './comments';
 import userReducer from './user';
 import topicReducer from './topic';
+import targetReducer from './target';
 
 export default combineReducers({
   user: userReducer,
-  topic: topicReducer
-//   api: apiReducer,
-//   videos: videosReducer,
-//   channels: channelsReducer,
-//   comments: commentsReducer,
-//   search: searchReducer
+  topic: topicReducer,
+  target: targetReducer
 });

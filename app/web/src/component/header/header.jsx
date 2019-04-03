@@ -44,7 +44,7 @@ class Header extends Component {
               {
                 loginInfo.username ? 
                   (
-                    <div>
+                    <div className="login-after">
                       <button className="btn  btn-default create">
                         创建
                         <ul className="hoverShow">
@@ -52,7 +52,15 @@ class Header extends Component {
                           <li><a href="">记笔记</a></li>
                         </ul>
                       </button>
-                      <button className="btn btn-default" onClick={() => this.handleClickOut()} >退出</button>
+                      <div className="user-avatar-wrapper">
+                        <a href={'/user/' + loginInfo.id} className="fr user-avatar">
+                        </a>
+                        <ul className="user-info-hover">
+                          <li><a href="/create/topic">个人设置</a></li>
+                          <li><a href="">我的笔记</a></li>
+                          <li><a onClick={() => this.handleClickOut()} >退出</a></li>
+                        </ul>
+                      </div>
                     </div>
                   ): 
                   (

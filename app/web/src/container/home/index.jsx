@@ -14,7 +14,10 @@ class Home extends Component {
     return (
       <div className="container">
         <div className="row">
-          <LeftSlider />
+          <LeftSlider 
+            handleSelectByTarget={ this.handleSelectByTarget.bind(this) } 
+            handleSelectByTopicType={ this.handleSelectByTopicType.bind(this) }
+          />
           <div className="topicListWrapper">
             {
               topicList.length > 0 && (
@@ -29,10 +32,13 @@ class Home extends Component {
     );
   }
   componentDidMount() {
-    const params = {
-      // topicType: ''
-    }
-    this.props.getTopicList(params);
+    this.props.getTopicList();
+  }
+  handleSelectByTarget(target) {
+    this.props.getTopicList({ target });
+  }
+  handleSelectByTopicType(topicType) {
+    this.props.getTopicList({ topicType })
   }
 }
 

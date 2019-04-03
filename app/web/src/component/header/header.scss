@@ -40,12 +40,12 @@
       display: block;
     }
     .hoverShow {
+      z-index: 1000;
       display: none;
       position: absolute;
-      top: 34px;
+      top: 33px;
       left: 0;
       width: 100px;
-      // margin-left: -50px;
       background: $mainBgC;
       border: 1px solid #ccc;
       border-radius: 4px;
@@ -56,8 +56,51 @@
         color: $mainC;
         text-align: left;
         &:hover {
-          color: #fff;
-          background: $mainAlpha;
+          // color: #fff;
+          background: #f5f5f5;
+        }
+      }
+    }
+  }
+  .login-after {
+    display: flex;
+    justify-items: center;
+    margin: 13px 0;
+  }
+  .user-avatar-wrapper {
+    position: relative;
+    .user-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: url('https://cdn.segmentfault.com/v-5c8b4d77/global/img/user-64.png');
+      background-size: contain;
+    }
+    &:hover .user-info-hover {
+      display: block;
+    }
+    .user-info-hover {
+      z-index: 1000;
+      display: none;
+      position: absolute;
+      top: 34px;
+      right: 0;
+      background: $mainBgC;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.1), 0 1px rgba(0, 0, 0, 0.1);
+      width: 150px;
+      padding: 10px 0;
+      a {
+        display: block;
+        padding: 0 16px;
+        height: 34px;
+        line-height: 34px;
+        color: $mainC;
+        text-align: left;
+        &:hover {
+          // color: #fff;
+          background: #f5f5f5;
         }
       }
     }

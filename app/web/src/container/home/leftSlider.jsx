@@ -1,45 +1,77 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
+import * as targetActions from '../../store/actions/target';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 class LeftSlider extends Component {
+  constructor(props) {
+    super(props);
+  }
+  
   render() {
+    let { targetList } = this.props;
+    console.log(targetList)
     return (
       <div className="leftSlider">
         <div className="tech-square">
           <ul>
-            <li className="tech-square-item">
-              <Link to="">
-                <span className="tech-square-item-icon">
-                  <img src="https://avatar-static.segmentfault.com/399/739/3997397795-5a6edc1c3167f_small" alt=""/>
-                </span>
-                <span>前端</span>
-              </Link>
-              <div className="hoverShow">
-                iiid
-              </div>
-            </li>
-            <li className="tech-square-item">
-              <Link to="">
-                <span className="tech-square-item-icon">
-                  <img src="https://avatar-static.segmentfault.com/199/890/1998904068-5a6edc3e40de1_small" alt=""/>
-                </span>
-                <span>后端</span>
-              </Link>
-            </li>
+            {
+              targetList.map(item => {
+                return <li className="tech-square-item" key={ item.value }>
+                  <a onClick={ () => this.props.handleSelectByTopicType(item.value) }>
+                    <span className="tech-square-item-icon">
+                      <img src="https://avatar-static.segmentfault.com/399/739/3997397795-5a6edc1c3167f_small" alt=""/>
+                    </span>
+                    <span>{ item.label }</span>
+                  </a>
+                  {
+                    item.targets.length > 0 ?
+                      <div className="hoverShow">
+                        <ul>
+                          {
+                            item.targets.map(elt => {
+                              return <li key={ elt.value }><a onClick={ () => this.props.handleSelectByTarget(elt.value) }>{ elt.label }</a></li>
+                            })
+                          }
+                        </ul>
+                      </div> :
+                      null
+                  }
+                </li>
+              })
+            }
           </ul>
         </div>
       </div>
     );
   }
+
+  componentDidMount() {
+    this.props.getTargets();
+  }
+  // handleSelect(value) {
+  //   this.props.handleSelectByTarget(value);
+  // }
 }
 
 
-const mapStateToProps = state => {
-  // console.log('mapStateToProps', state);
-  return {
-    list: state.list
-  };
-};
+LeftSlider.propTypes = {
+  targetList: PropTypes.array.isRequired
+}
 
-export default connect(mapStateToProps, null)(LeftSlider);
+const mapStateToProps = (state) => {
+  console.log(state);
+  const { target } = state;
+  return {
+    targetList: target.targetList
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  const getTargets = targetActions.getTargetList.request;
+  return bindActionCreators({ getTargets }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LeftSlider);

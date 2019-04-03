@@ -1,6 +1,7 @@
 'use strict';
-
+const Sequelize = require('sequelize');
 const Service = require('egg').Service;
+const Op = Sequelize.Op;
 
 class TopicService extends Service {
   // 获取 topicList
@@ -11,6 +12,54 @@ class TopicService extends Service {
         order: [
           ['id', 'DESC']
         ]
+      });
+
+      if (res.length >= 0) {
+        ctx.success(res);
+      } else {
+        ctx.failure('没找到数据！');
+      }
+    } catch (err) {
+      ctx.failure('系统异常！！', 4000);
+    }
+  }
+
+  // 根据target获取list
+  async findByTarget(target) {
+    const { ctx } = this;
+    try {
+      const res = await ctx.model.Topic.findAll({
+        order: [
+          ['id', 'DESC']
+        ],
+        where: {
+          targets: {
+            [Op.like]: '%' + target + '%'
+          }
+        }
+      });
+
+      if (res.length >= 0) {
+        ctx.success(res);
+      } else {
+        ctx.failure('没找到数据！');
+      }
+    } catch (err) {
+      ctx.failure('系统异常！！', 4000);
+    }
+  }
+
+  // 根据topicType获取list
+  async findByTopicType(topicType) {
+    const { ctx } = this;
+    try {
+      const res = await ctx.model.Topic.findAll({
+        order: [
+          ['id', 'DESC']
+        ],
+        where: {
+          topicType
+        }
       });
 
       if (res.length >= 0) {

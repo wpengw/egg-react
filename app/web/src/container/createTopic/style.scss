@@ -3,7 +3,7 @@
  @import "../../../asset/style/common.scss";
 
 .create-wrapper {
-  .target-wapper {
+  .target-wrapper {
     position: relative;
     background-color: #fff;
     border: 1px solid #ccc;
@@ -21,12 +21,74 @@
     line-height: 1.5;
     padding: 2px 6px;
     margin: 20px 0;
-    .target-ipt {
-        display: inline-block;
+    .ipt-wrapper {
+      display: inline-block;
+      position: relative;
+      .target-ipt {
         border: none;
         box-shadow: none;
         width: 300px;
+      }
+      .select-wrapper {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+        position: absolute;
+        border-radius: 4px;
+        padding: 10px;
+        width: 500px;
+        left: 10px;
+        cursor: default;
+        .close {
+          position: absolute;
+          top: 0;
+          right: 0;
+          cursor: pointer;
+          width: 20px;
+          height: 20px;
+          line-height: 20px;
+          text-align: center;
+          font-size: 16px;
+          &:hover {
+            color: $mainC;
+          }
+        }
+        .target-tab,.tab-content {
+          li {
+            float: left;
+            margin-right: 5px;
+            a {
+              display: block;
+              padding: 1px 6px;
+              border-radius: 3px;
+              &:hover {
+                background: #f5f5f5;
+              }
+            }
+            a.active {
+              color: #fff;
+              background: $mainC;
+            }
+          }
+        }
+        .tab-content {
+          margin-top: 10px;
+          li {
+            a {
+              color: $mainC;
+              background: rgba(0, 180, 213, 0.1);
+              &:hover {
+                color: #fff;
+                background: $mainC;
+              }
+            }
+          }
+        }
+      }
     }
+    
     .target-item {
         display: inline-block;
         color: $mainC;
