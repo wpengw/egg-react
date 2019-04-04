@@ -29,3 +29,9 @@ export const relativeTime = t => {
     return `${Math.max(diff, 0)}秒前`
   }
 }
+
+// 数组去重
+export const unique = (arr, key) => {
+  const res = new Map();
+  return arr.filter((a) => !res.has(a[key]) && res.set(a[key], 1));
+}

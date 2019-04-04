@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { relativeTime } from '../../../util/tool';
+import { Icon } from 'antd';
 
 class LeftSlider extends Component {
   constructor(props) {
     super(props);
     this.handleToDetail = this.handleToDetail.bind(this);
+    this.handleLike = this.handleLike.bind(this);
   }
   render() {
     const { topicInfo } = this.props;
@@ -16,9 +18,13 @@ class LeftSlider extends Component {
           <div className="topicExcerpt">{ topicInfo.content }</div>
         </a>
         <div className="itemMeta">
-          <span>{ topicInfo.topNum } 赞</span>
+          <span onClick={ () => this.handleLike(topicInfo.id) } className="like"> 
+            <Icon type="like" />
+            <span className="like-num">{ topicInfo.likeNum }</span>
+            <span>赞</span>
+          </span>
           <span>{ topicInfo.pageView } 浏览</span>
-          <a href={'/user/' + topicInfo.authorId}>{ topicInfo.authorName }</a>
+          <a className="user-name" href={'/user/' + topicInfo.authorId}>{ topicInfo.authorName }</a>
           <span className="time">{ relativeTime(topicInfo.created_at) }</span>
         </div>
       </div>
@@ -27,6 +33,9 @@ class LeftSlider extends Component {
 
   handleToDetail() {
     // this.props.history.push('/');
+  }
+  handleLike(id) {
+    console.log(id);
   }
 }
 

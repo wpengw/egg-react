@@ -69,9 +69,9 @@
   .topicItem {
     margin-bottom: 20px;
     color: $fontC3;
-    &:hover .topicTitle {
-      color: $mainC;
-    }
+    // &:hover .topicTitle {
+    //   color: $mainC;
+    // }
     .topicTitle {
       font-weight: 500;
       font-size: 18px;
@@ -90,6 +90,23 @@
       }
       a {
         text-decoration: underline;
+      }
+      .user-name:hover {
+        text-decoration: underline!important;
+      }
+    }
+    .like {
+      cursor: pointer;
+      i {
+        color: $mainC;
+        margin-right: 5px;
+      }
+      .like-num {
+        color: $mainC;
+        &:before {
+          content: 'x ';
+          font-size: 12px;
+        }
       }
     }
   }

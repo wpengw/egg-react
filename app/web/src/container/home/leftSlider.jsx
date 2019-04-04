@@ -12,7 +12,6 @@ class LeftSlider extends Component {
   
   render() {
     let { targetList } = this.props;
-    console.log(targetList)
     return (
       <div className="leftSlider">
         <div className="tech-square">

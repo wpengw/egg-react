@@ -100,10 +100,14 @@
         height: 22px;
         line-height: 22px;
         margin-bottom: 5px;
+        border-radius: 3px;
         .remove {
             margin-left: 6px;
             cursor: pointer;
         }
+    }
+    .warning {
+      background-color: rgb(255, 242, 171);
     }
   }
   .create-footer {

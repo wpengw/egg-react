@@ -24,6 +24,8 @@ module.exports = app => {
         type: STRING,
         allowNull: false
       },
+      likeNum: INTEGER, // 点赞量
+      pageView: INTEGER, // 浏览量
       authorName: STRING(32),
       authorId: STRING(64),
       created_at: {

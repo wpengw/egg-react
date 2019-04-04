@@ -3,11 +3,13 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import * as topicActions from '../../store/actions/topic';
+import { unique } from '../../../util/tool'
 import Editor from 'for-editor'
 import SelectTargetWrapper from './selectTargetWrapper';
 import './style.scss';
 import { Input, Select } from 'antd';
 import { message } from 'antd';
+import { isNumber } from 'util';
 
 const Option = Select.Option;
 
@@ -24,6 +26,7 @@ class CreateTopic extends Component {
     super(props);
     this.state = {
       focused: false,
+      warnIndex: null,
       title: '',
       topicType: 1,
       targets: '',
@@ -38,14 +41,14 @@ class CreateTopic extends Component {
     this.handleFocus = this.handleFocus.bind(this);
   }
   render() {
-    const { content, title, targetArr, focused } = this.state;
+    const { content, title, targetArr, focused, warnIndex } = this.state;
     return(
       <div className="create-wrapper">
         <Input size="large" value={title} onChange={ this.handleChangeTitle } addonBefore={selectBefore} defaultValue="mysite" />
         <div className="target-wrapper">
           {
-            targetArr.map(item => {
-              return <span className="target-item" key={item.value}>{ item.label } <span className="remove" onClick={ () => this.handleRemove(item.value) }>×</span></span>
+            targetArr.map((item, index) => {
+              return <span className={index == warnIndex ? 'warning target-item' : 'target-item'} key={item.value}>{ item.label } <span className="remove" onClick={ () => this.handleRemove(item.value) }>×</span></span>
             })
           }
           <div className="ipt-wrapper">
@@ -85,7 +88,30 @@ class CreateTopic extends Component {
   }
   handleCheckTarget(label, value, topicType) {
     const _obj = { label, value };
-    const _arr = this.state.targetArr.concat([_obj]);
+    let _index = null;
+    let _arr = this.state.targetArr;
+    this.state.targetArr.forEach((item, index) => {
+      if (item.value == value) {
+        _index = index;
+      }
+    })
+    if (isNumber(_index)) {
+      this.setState({
+        warnIndex: _index
+      })
+      setTimeout(() => {
+        this.setState({
+          warnIndex: null
+        })
+      }, 1000)
+    } else {
+      _arr = this.state.targetArr.concat([_obj]);
+    }
+
+    if (_arr.length >= 4) {
+      _arr = _arr.splice(0, 4);
+    }
+    
     this.setState({
       targetArr: _arr,
       topicType

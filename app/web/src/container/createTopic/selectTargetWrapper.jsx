@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import * as targetActions from '../../store/actions/target';
 import './style.scss';
 import { Input, Select } from 'antd';
-import { message } from 'antd';
 
 const Option = Select.Option;
 
@@ -79,6 +78,7 @@ class SelectedTarget extends Component {
       active: index
     })
   }
+  
   handleCheckTarget(item) {
     const topicType = this.props.targetList[this.state.active].value;
     this.props.handleCheckTarget(item.label, item.value, topicType)
