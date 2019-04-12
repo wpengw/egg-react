@@ -10,7 +10,9 @@ import { message } from 'antd';
 
 class Home extends Component {
   render() {
-    const { topicList } = this.props
+    const { topicList, like } = this.props;
+    let likeId = like.hasOwnProperty('id') ? like.id : null;
+    let status = like.hasOwnProperty('id') ? like.likeStatus : null;
     return (
       <div className="container">
         <div className="row">
@@ -20,11 +22,16 @@ class Home extends Component {
           />
           <div className="topicListWrapper">
             {
-              topicList.length > 0 && (
+              topicList.length > 0 ? (
                 topicList.map(item => {
-                  return <TopicItem topicInfo={item}  key={item.id}/>
+                  if (likeId == item.id) {
+                    status ? item.likeNum++ : item.likeNum--;
+                    return <TopicItem topicInfo={item} handleLike={ this.handleLike.bind(this) } key={item.id}/>
+                  }
+                  return <TopicItem topicInfo={item} handleLike={ this.handleLike.bind(this) } key={item.id}/>
                 })
-              )
+              ) :
+                <div className="noData">~(&gt;_&lt;)~&nbsp;还没该类目的文章,快去写文章吧</div>
             }
           </div>
         </div>
@@ -40,6 +47,13 @@ class Home extends Component {
   handleSelectByTopicType(topicType) {
     this.props.getTopicList({ topicType })
   }
+  handleLike(id) {
+    const params = {
+      id,
+      userId: this.props.loginInfo.id
+    }
+    this.props.postLikeTopic(params);
+  }
 }
 
 Home.propTypes = {
@@ -47,18 +61,22 @@ Home.propTypes = {
 }
 
 const mapStateToProps = (state) => {
-  const { topic } = state;
+  console.log(state);
+  const { topic, user } = state;
   if (topic.msg) {
     message.error(topic.msg, 2);
   }
   return {
-    topicList: topic.topicList
+    topicList: topic.topicList,
+    like: topic.like,
+    loginInfo: user.loginInfo
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   const getTopicList = topicActions.getTopicList.request;
-  return bindActionCreators({ getTopicList }, dispatch);
+  const postLikeTopic = topicActions.postLikeTopic.request;
+  return bindActionCreators({ getTopicList, postLikeTopic }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

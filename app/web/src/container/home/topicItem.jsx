@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import { relativeTime } from '../../../util/tool';
 import { Icon } from 'antd';
 
-class LeftSlider extends Component {
+class TopicItem extends Component {
   constructor(props) {
     super(props);
     this.handleToDetail = this.handleToDetail.bind(this);
-    this.handleLike = this.handleLike.bind(this);
+    // this.handleLike = this.handleLike.bind(this);
   }
   render() {
     const { topicInfo } = this.props;
@@ -18,7 +18,7 @@ class LeftSlider extends Component {
           <div className="topicExcerpt">{ topicInfo.content }</div>
         </a>
         <div className="itemMeta">
-          <span onClick={ () => this.handleLike(topicInfo.id) } className="like"> 
+          <span onClick={ () => this.props.handleLike(topicInfo.id) } className="like"> 
             <Icon type="like" />
             <span className="like-num">{ topicInfo.likeNum }</span>
             <span>赞</span>
@@ -46,4 +46,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, null)(LeftSlider);
+export default connect(mapStateToProps, null)(TopicItem);

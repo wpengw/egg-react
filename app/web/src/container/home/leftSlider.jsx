@@ -55,13 +55,12 @@ class LeftSlider extends Component {
   // }
 }
 
-
 LeftSlider.propTypes = {
   targetList: PropTypes.array.isRequired
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
+  // console.log(state);
   const { target } = state;
   return {
     targetList: target.targetList

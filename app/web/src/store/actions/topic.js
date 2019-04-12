@@ -3,6 +3,7 @@ import {createAction, createRequestTypes, FAILURE, REQUEST, SUCCESS} from './ind
 export const GET_TOPIC_LIST = createRequestTypes('GET_TOPIC_LIST');
 export const GET_TOPIC_DETAIL = createRequestTypes('GET_TOPIC_DETAIL');
 export const POST_CREATE_TOPIC = createRequestTypes('POST_CREATE_TOPIC');
+export const POST_LIKE_TOPIC = createRequestTypes('POST_LIKE_TOPIC');
 
 // 获取文章列表
 export const getTopicList = {
@@ -24,3 +25,11 @@ export const postCreateTopic = {
   success: (response) => createAction(POST_CREATE_TOPIC[SUCCESS], {response}),
   failure: (response) => createAction(POST_CREATE_TOPIC[FAILURE],  {response})
 };
+
+// 点赞
+export const postLikeTopic = {
+  request: (params) => createAction(POST_LIKE_TOPIC[REQUEST], params),
+  success: (response) => createAction(POST_LIKE_TOPIC[SUCCESS], {response}),
+  failure: (response) => createAction(POST_LIKE_TOPIC[FAILURE],  {response})
+};
+

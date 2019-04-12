@@ -2,7 +2,6 @@
 // const uuidv1 = require('uuid/v1');
 const db = require('./db');
 
-
 module.exports = app => {
   const { STRING, INTEGER, DATE, BOOLEAN } = app.Sequelize;
 

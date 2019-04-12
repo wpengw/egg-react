@@ -1,10 +1,11 @@
-import { GET_TOPIC_LIST, GET_TOPIC_DETAIL, POST_CREATE_TOPIC } from '../actions/topic';
+import { GET_TOPIC_LIST, GET_TOPIC_DETAIL, POST_CREATE_TOPIC, POST_LIKE_TOPIC } from '../actions/topic';
 import {REQUEST, SUCCESS, FAILURE} from '../actions';
 
 const initState = {
   topicList: [],
   detail: {},
   created: '',
+  like: {},
   msg: ''
 }
 
@@ -21,6 +22,10 @@ export default function (state = initState, action) {
     case POST_CREATE_TOPIC[SUCCESS]:
       return reduceSuccess(state, action.response, 'created');
     case POST_CREATE_TOPIC[FAILURE]:
+      return reduceFailure(state, action.response);
+    case POST_LIKE_TOPIC[SUCCESS]:
+      return reduceSuccess(state, action.response, 'like');
+    case POST_LIKE_TOPIC[FAILURE]:
       return reduceFailure(state, action.response);
     default:
       return state;

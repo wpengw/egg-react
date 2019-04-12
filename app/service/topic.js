@@ -76,8 +76,9 @@ class TopicService extends Service {
   async findDetailById(id) {
     const { ctx } = this;
     try {
-      const res = await ctx.model.Topic.findOne({ where: { id } });
+      let res = await ctx.model.Topic.findOne({ where: { id } });
       if (res) {
+        res.update({ pageView: ++res.pageView })
         ctx.success(res);
       } else {
         ctx.failure('没找到数据！');
@@ -100,6 +101,37 @@ class TopicService extends Service {
     } catch (err) {
       ctx.failure('系统异常！！', 4000);
     }
+  }
+
+  // 点赞
+  async postLikeTopic(id, userId) {
+    const { ctx } = this;
+    try {
+      let res = await ctx.model.Topic.findOne({ where: { id } });
+      let { status } = await this.updateLikeDb(id, userId);
+      if (res) {
+        let likeNum = status ? ++res.likeNum : (res.likeNum > 0 ? --res.likeNum : 0);
+        res.update({ likeNum });
+        res.dataValues.likeStatus = status;
+        ctx.success(res);
+      } else {
+        ctx.failure('这篇文章已经被主人召回了！');
+      }
+    } catch (err) {
+      ctx.failure('系统异常！！', 4000);
+    }
+  }
+  // 操作点赞表
+  async updateLikeDb(topicId, userId) {
+    const { ctx } = this;
+    return await ctx.model.LikeTopic.findOne({ where: { userId, topicId } }).then(obj => {
+      if (obj) {
+        return obj.update({ status: !obj.status });
+      } else {
+        console.log('==================================-----------------========')
+        return ctx.model.LikeTopic.create({ topicId, userId, status: true });
+      }
+    })
   }
 }
 

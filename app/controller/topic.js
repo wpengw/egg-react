@@ -26,6 +26,10 @@ class TopicController extends Controller {
     await ctx.service.topic.findDetailById(id);
   }
 
+  /**
+   * @创建topic
+   * @params { authorId, authorName, title, topicType, targets, content }
+  */
   async postCreateTopic() {
     const { ctx } = this;
     const { authorId, authorName, title, topicType, targets, content } = ctx.request.body;
@@ -41,6 +45,16 @@ class TopicController extends Controller {
       return;
     }
     await ctx.service.topic.createTopic({ authorId, authorName, title, topicType, targets, content});
+  }
+
+  /**
+   * @点赞
+   * @params { id }
+  */
+  async postLikeTopic() {
+    const { ctx } = this;
+    const { id, userId } = ctx.request.body;
+    await ctx.service.topic.postLikeTopic(id, userId);
   }
 }
 

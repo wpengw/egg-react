@@ -1,7 +1,7 @@
 import {all, call, put, fork} from 'redux-saga/effects';
 // import {watchMostPopularVideos, watchMostPopularVideosBy
 import { getUserDetail, postLogin, postLoginOut, postRegister } from './user';
-import { getTopicListFlow, getTopicDetailFlow, postCreateTopicFlow } from './topic';
+import { getTopicListFlow, getTopicDetailFlow, postCreateTopicFlow, postLikeTopicFlow } from './topic';
 import { getTargetListFlow } from './target';
 
 export default function* () {
@@ -13,6 +13,7 @@ export default function* () {
     fork(getTopicListFlow),
     fork(getTopicDetailFlow),
     fork(postCreateTopicFlow),
+    fork(postLikeTopicFlow),
     fork(getTargetListFlow)
   ]);
 }

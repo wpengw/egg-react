@@ -21,6 +21,11 @@ export const postCreateTopicApi = function* (params) {
   yield fetchEntity(request, topicActions.postCreateTopic);
 }
 
+export const postLikeTopicApi = function* (params) {
+  const request = yield api.postLikeTopic(params);
+  yield fetchEntity(request, topicActions.postLikeTopic);
+}
+
 /******************************************************************************/
 /******************************* WATCHERS *************************************/
 /******************************************************************************/
@@ -46,6 +51,14 @@ export const postCreateTopicFlow = function* () {
     const params = yield take(topicActions.POST_CREATE_TOPIC[REQUEST]);
     delete params.type;
     yield fork(postCreateTopicApi, params);
+  }
+}
+
+export const postLikeTopicFlow = function* () {
+  while (true) {
+    const params = yield take(topicActions.POST_LIKE_TOPIC[REQUEST]);
+    delete params.type;
+    yield fork(postLikeTopicApi, params);
   }
 }
 

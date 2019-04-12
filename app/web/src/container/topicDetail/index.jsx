@@ -20,6 +20,7 @@ class TopicDetail extends Component {
             __html: detail.content ? marked(detail.content) : null
           }}
         />
+        <div>预览：{ detail.pageView }</div>
       </div>
     )
   }

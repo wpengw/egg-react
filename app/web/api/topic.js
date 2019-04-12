@@ -17,3 +17,9 @@ export const getAllTopic = async (params) => {return await get('/api/v1/getAllTo
  * @params { authorId, authorName, title, type, targets, content }
  */
 export const postCreateTopic = async (params) => {return await post('/api/v1/postCreateTopic', params)}
+
+/**
+ * @点赞
+ * @params { id }
+ */
+export const postLikeTopic = async (params) => {return await post('/api/v1/postLikeTopic', params)}
