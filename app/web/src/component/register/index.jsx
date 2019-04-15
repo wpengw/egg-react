@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux';
-import * as userActions from '../../store/actions/user';
 import './register.scss';
 import { postRegister } from '../../../api/user';
 import { message } from 'antd';
@@ -102,16 +99,4 @@ class Register extends Component {
 }
 
 export default Register;
-// const mapStateToProps = (state, props) => {
-//   const { loginInfo } = state.user;
-//   return {
-//     loginInfo
-//   }
-// }
 
-// const mapDispatchToProps = (dispatch) => {
-//   const postRegister = userActions.postRegister.request;
-//   return bindActionCreators({ postRegister }, dispatch);
-// }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Register);

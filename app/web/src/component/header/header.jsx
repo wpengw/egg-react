@@ -62,7 +62,7 @@ class Header extends Component {
                         </ul>
                       </div>
                     </div>
-                  ): 
+                  ) :
                   (
                     <div>
                       <button className="btn btn-default" onClick={() => this.handleClickLogin()} >立即登录</button>

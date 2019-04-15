@@ -14,6 +14,7 @@ module.exports = app => {
   
   Targets.associate = function() {
     Targets.belongsTo(app.model.TargetOne, {as: 'include'});
+    // Targets.belongsTo(app.model.Topic, {as: 'include'});
     // Targets.belongsTo(app.model.TargetOne, {foreignKey: 'value', targetKey: 'parentValue'});
   }
 

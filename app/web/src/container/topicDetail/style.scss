@@ -8,6 +8,34 @@
     margin-bottom: 20px;
     color: $mainFontC;
   }
+  .info {
+    .topic-type {
+      float: left;
+      padding: 0 5px;
+      height: 24px;
+      line-height: 24px;
+      text-align: center;
+      border-radius: 3px;
+      background: rgba(242,174,67,0.25);
+      color: #F2AE43;
+      font-size: 12px;
+      margin-right: 10px;
+    }
+    .topic-target {
+      color: #00b4d5;
+      background: rgba(0, 180, 213, 0.1);
+    }
+    .pageView {
+      float: left;
+      height: 24px;
+      line-height: 24px;
+      font-size: 12px;
+      color: #999;
+    }
+  }
+  .article-detail {
+    margin-top: 20px;
+  }
 }
 
 .hljs{display:block;overflow-x:auto;padding:.5em;color:#383a42!important;background:#fafafa!important}.hljs-comment,.hljs-quote{color:#a0a1a7!important;font-style:italic}.hljs-doctag,.hljs-keyword,.hljs-formula{color:#a626a4!important}.hljs-section,.hljs-name,.hljs-selector-tag,.hljs-deletion,.hljs-subst{color:#e45649!important}.hljs-literal{color:#0184bb!important}.hljs-string,.hljs-regexp,.hljs-addition,.hljs-attribute,.hljs-meta-string{color:#50a14f!important}.hljs-built_in,.hljs-class .hljs-title{color:#c18401!important}.hljs-attr,.hljs-variable,.hljs-template-variable,.hljs-type,.hljs-selector-class,.hljs-selector-attr,.hljs-selector-pseudo,.hljs-number{color:#986801!important}.hljs-symbol,.hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-title{color:#4078f2!important}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:bold}.hljs-link{text-decoration:underline}

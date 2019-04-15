@@ -44,8 +44,8 @@ class Home extends Component {
   handleSelectByTarget(target) {
     this.props.getTopicList({ target });
   }
-  handleSelectByTopicType(topicType) {
-    this.props.getTopicList({ topicType })
+  handleSelectByTopicType(parentTarget) {
+    this.props.getTopicList({ parentTarget })
   }
   handleLike(id) {
     const params = {
@@ -63,7 +63,7 @@ Home.propTypes = {
 const mapStateToProps = (state) => {
   console.log(state);
   const { topic, user } = state;
-  if (topic.msg) {
+  if (topic.msg && !('username' in user.loginInfo)) {
     message.error(topic.msg, 2);
   }
   return {

@@ -29,6 +29,7 @@ class CreateTopic extends Component {
       warnIndex: null,
       title: '',
       topicType: 1,
+      parentTarget: '',
       targets: '',
       content: '',
       targetArr: []
@@ -86,7 +87,7 @@ class CreateTopic extends Component {
       title: e.target.value
     })
   }
-  handleCheckTarget(label, value, topicType) {
+  handleCheckTarget(label, value, parentTarget) {
     const _obj = { label, value };
     let _index = null;
     let _arr = this.state.targetArr;
@@ -114,7 +115,7 @@ class CreateTopic extends Component {
     
     this.setState({
       targetArr: _arr,
-      topicType
+      parentTarget
     })
   }
   handleRemove(value) {
@@ -149,8 +150,9 @@ class CreateTopic extends Component {
     const params = {
       authorId: this.props.loginInfo.id,
       authorName: this.props.loginInfo.username,
-      title: _st.title,
       topicType: _st.topicType,
+      title: _st.title,
+      parentTarget: _st.parentTarget,
       targets: _targets,
       content: _st.content
     }

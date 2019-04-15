@@ -6,11 +6,11 @@ class TopicController extends Controller {
   async getAllTopicList() {
     const { ctx } = this;
     const target = ctx.query.target;
-    const topicType = ctx.query.topicType;
+    const parentTarget = ctx.query.parentTarget;
     if (target) {
       await ctx.service.topic.findByTarget(target);
-    } else if (topicType) {
-      await ctx.service.topic.findByTopicType(topicType);
+    } else if (parentTarget) {
+      await ctx.service.topic.findByTopicType(parentTarget);
     } else {
       await ctx.service.topic.findAll();
     }

@@ -19,6 +19,7 @@ module.exports = app => {
         }
       },
       topicType: INTEGER,
+      parentTarget: STRING(32),
       targets: STRING(255),
       content: {
         type: STRING,
@@ -42,6 +43,10 @@ module.exports = app => {
       timestamps: false
     }
   );
+
+  // Topic.associate = function() {
+  //   Topic.hasMany(app.model.Target, {foreignKey: 'parentTarget', sourceKey: 'value'});
+  // }
   
   return Topic;
 };

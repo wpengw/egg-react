@@ -13,7 +13,7 @@ class TopicItem extends Component {
     const { topicInfo } = this.props;
     return (
       <div className="topicItem" >
-        <a href={'/topicDetail/' + topicInfo.id}>
+        <a href={'/topicDetail/' + topicInfo.id} target="_blank">
           <h4 className="topicTitle">{ topicInfo.title }</h4>
           <div className="topicExcerpt">{ topicInfo.content }</div>
         </a>
@@ -33,9 +33,6 @@ class TopicItem extends Component {
 
   handleToDetail() {
     // this.props.history.push('/');
-  }
-  handleLike(id) {
-    console.log(id);
   }
 }
 

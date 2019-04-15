@@ -9,10 +9,20 @@ import * as topicActions from '../../store/actions/topic';
 
 class TopicDetail extends Component {
   render() {
-    const { detail } = this.props
+    const { detail } = this.props;
+    let targetsArr = detail.targetsArr || [];
     return(
       <div className="container topic-detail">
         <h2 className="detail-title">{ detail.title }</h2>
+        <div className="info clear">
+          <span className="topic-type">{ this.handleTopicType(detail.topicType) }</span>
+          {
+            targetsArr.map((item, index) => {
+              return <a className="topic-type topic-target" key={ index }>{ item.label }</a>
+            })
+          }
+          <span className="pageView">{ detail.pageView } 次阅读</span>
+        </div>
         <div
           id="content"
           className="article-detail"
@@ -20,7 +30,7 @@ class TopicDetail extends Component {
             __html: detail.content ? marked(detail.content) : null
           }}
         />
-        <div>预览：{ detail.pageView }</div>
+        {/* <div>预览：{ detail.pageView }</div> */}
       </div>
     )
   }
@@ -43,6 +53,14 @@ class TopicDetail extends Component {
   componentDidMount() {
     let id = this.props.match.params.id;
     this.props.getTopicDetail({ id })
+  }
+  handleTopicType(type) {
+    let _obj = {
+      1: '原创',
+      2: '转载',
+      3: '翻译'
+    }
+    return _obj[type];
   }
 }
 

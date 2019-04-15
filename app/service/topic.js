@@ -50,7 +50,7 @@ class TopicService extends Service {
   }
 
   // 根据topicType获取list
-  async findByTopicType(topicType) {
+  async findByTopicType(parentTarget) {
     const { ctx } = this;
     try {
       const res = await ctx.model.Topic.findAll({
@@ -58,7 +58,7 @@ class TopicService extends Service {
           ['id', 'DESC']
         ],
         where: {
-          topicType
+          parentTarget
         }
       });
 
@@ -78,14 +78,43 @@ class TopicService extends Service {
     try {
       let res = await ctx.model.Topic.findOne({ where: { id } });
       if (res) {
+        let res2 = await this.findTargets(res);
         res.update({ pageView: ++res.pageView })
+        res.dataValues.targetsArr = res2;
         ctx.success(res);
       } else {
         ctx.failure('没找到数据！');
       }
     } catch (err) {
-      ctx.failure('系统异常！！', 4000);
+      ctx.failure('系统异常33！！', 4000);
     }
+  }
+  async findTargets (obj) {
+    let _obj = obj.dataValues;
+    const { ctx } = this;
+    let _arr = [];
+    let res = await ctx.model.TargetOne.findOne({
+      attributes: ['label', 'value'],
+      order: [
+        ['id']
+      ],
+      include: [
+        {
+          model: ctx.model.Target,
+          attributes: ['label', 'value', 'parentValue']
+        }
+      ],
+      where: { value: _obj.parentTarget }
+    });
+    _arr.push({
+      label: res.dataValues.label,
+      value: res.dataValues.value
+    })
+    let _arr2 = res.dataValues.targets.filter(item => {
+      return _obj.targets.includes(item.value);
+    })
+    _arr = _arr.concat(_arr2);
+    return _arr;
   }
   
   // 新建topic
@@ -128,7 +157,6 @@ class TopicService extends Service {
       if (obj) {
         return obj.update({ status: !obj.status });
       } else {
-        console.log('==================================-----------------========')
         return ctx.model.LikeTopic.create({ topicId, userId, status: true });
       }
     })
