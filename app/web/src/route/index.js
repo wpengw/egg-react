@@ -6,6 +6,7 @@ import User from '../container/user';
 import Answer from '../container/answer';
 import TopicDetail from '../container/topicDetail';
 import CreateTopic from '../container/createTopic';
+import Targets from '../container/targets';
 
 class App extends Component {
   constructor(props) {
@@ -30,6 +31,7 @@ class App extends Component {
               <Route path="/topicDetail/:id" component={ TopicDetail }/>
               <Route path="/answer" component={ Answer }/>
               <Route path="/create/topic" component={ CreateTopic }/>
+              <Route path="/targets" component={ Targets }/>
               <Route path="/" component={ Home }/>
             </Switch>
           </div>

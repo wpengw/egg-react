@@ -45,6 +45,9 @@ class Home extends Component {
     this.props.getTopicList({ target });
   }
   handleSelectByTopicType(parentTarget) {
+    if (parentTarget == 99) {
+      return this.props.history.push('/targets');
+    }
     this.props.getTopicList({ parentTarget })
   }
   handleLike(id) {

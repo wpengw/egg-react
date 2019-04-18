@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
+import { Row, Col, Upload } from 'antd';
+import './style.scss';
 
 // import {getSearchNextPageToken, getSearchResults} from '../../store/reducers/user';
 import * as userActions from '../../store/actions/user';
@@ -10,16 +12,25 @@ class User extends Component {
   render() {
     const { userDetail } = this.props
     return(
-      <div className="container">
-        <div>{userDetail.username}</div>
-        <div>{userDetail.id}</div>
+      <div className="container user">
+        <Row>
+          <Col span={4}>
+            <div className="user-avatar-warp">
+              <img src={require('../../../asset/images/avatar.png')} alt=""/>
+            </div>
+          </Col>
+          <Col span={10}>col-12</Col>
+          <Col span={10}>col-12</Col>
+        </Row>
+        {/* <div>{userDetail.username}</div>
+        <div>{userDetail.id}</div> */}
       </div>
     )
   }
 
   componentDidMount() {
     // const { dispatch }=this.props;
-    // dispatch(sendUserRequest({id: this.props.match.params.id}))
+    // dispatch(sendUserRequest({id: this.props.match.params.id}));
     this.getUserDetail();
   }
 

@@ -11,7 +11,7 @@ class TargetService extends Service {
       let res = await ctx.model.TargetOne.findAll({
         attributes: ['label', 'value'],
         order: [
-          ['id']
+          ['id', 'ASC']
         ],
         include: [
           {

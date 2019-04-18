@@ -9,7 +9,7 @@ module.exports = app => {
 
   const apiV1Router = app.router.namespace('/api/v1');
   const { controller, middleware } = app;
-  const { user, topic, target } = controller;
+  const { user, topic, target, upload } = controller;
   /**
    * 用户相关接口
    */
@@ -30,4 +30,7 @@ module.exports = app => {
    * target相关接口
    */
   apiV1Router.get('/getAllTarget', target.getAllTarget); // 获取target
+
+  // 图片上传
+  apiV1Router.post('/upload/img', upload.uploadImg);
 };

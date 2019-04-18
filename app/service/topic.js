@@ -96,7 +96,7 @@ class TopicService extends Service {
     let res = await ctx.model.TargetOne.findOne({
       attributes: ['label', 'value'],
       order: [
-        ['id']
+        ['id', 'DESC']
       ],
       include: [
         {
