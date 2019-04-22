@@ -34,7 +34,18 @@ class UserService extends Service {
     } catch (err) {
       ctx.failure('系统异常！！', 4000);
     }
-    
+  }
+
+  async updateAvatar(params) {
+    const { ctx } = this;
+    try {
+      const { avatarUrl } = params;
+      let res = await ctx.model.User.findOne({ where: { id: ctx.session.userId } });
+      res.update({ avatarUrl });
+      ctx.success(avatarUrl);
+    } catch (err) {
+      ctx.failure('系统异常！！', 4000);
+    }
   }
 
   async login(params) {
@@ -47,7 +58,7 @@ class UserService extends Service {
       }
   
       if (user.password == password) {
-        // ctx.session.id = user.id;
+        ctx.session.userId = user.id;
         // ctx.session.username = username;
         // ctx.session.maxAge = ms('2h');
         const token = ctx.helper.generateToken({id: user.id}, 7200);

@@ -32,5 +32,5 @@ module.exports = app => {
   apiV1Router.get('/getAllTarget', target.getAllTarget); // 获取target
 
   // 图片上传
-  apiV1Router.post('/upload/img', upload.uploadImg);
+  apiV1Router.post('/upload/img', UserInterceptor, upload.create);
 };

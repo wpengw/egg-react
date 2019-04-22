@@ -12,7 +12,7 @@ module.exports = app => {
     name: STRING, // 姓名
     sex: INTEGER, // 用户性别：1男性, 2女性, 0未知
     age: INTEGER, // 年龄
-    avatar: STRING, // 头像
+    avatarUrl: { type: STRING, defaultValue: 'http://wpw-egg-react.oss-cn-beijing.aliyuncs.com/15559273159822792.png' }, // 头像链接
     roleId: STRING, // 角色id
     status: STRING, // 用户状态
     token: STRING, // 认证 token

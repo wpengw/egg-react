@@ -15,13 +15,22 @@
       height: 100%;
     }
     .upload-img {
+      display: none;
       position: absolute;
+      bottom: 0;
+      left: 0;
       width: 100%;
-      height: 24px;
-      line-height: 24px;
+      height: 40px;
+      line-height: 40px;
       text-align: center;
-      color: #fff;
+      cursor: pointer;
       background: rgba(0, 0, 0, 0.5);
+      .ant-upload {
+        color: #fff;
+      }
+    }
+    &:hover .upload-img {
+      display: block;
     }
   }
 }
