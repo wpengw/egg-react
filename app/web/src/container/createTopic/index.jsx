@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import * as topicActions from '../../store/actions/topic';
-import { unique } from '../../../util/tool'
-import Editor from 'for-editor'
+import { unique } from '../../../util/tool';
+import Editor from 'for-editor';
 import SelectTargetWrapper from './selectTargetWrapper';
 import './style.scss';
 import { Input, Select } from 'antd';
@@ -155,6 +155,10 @@ class CreateTopic extends Component {
       parentTarget: _st.parentTarget,
       targets: _targets,
       content: _st.content
+    }
+    let _keys = Object.keys(params);
+    if (_keys.some((key) => { return !params[key] })) {
+      return message.error('信息不完整！');
     }
     this.props.postCreateTopic(params);
   }

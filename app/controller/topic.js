@@ -32,19 +32,19 @@ class TopicController extends Controller {
   */
   async postCreateTopic() {
     const { ctx } = this;
-    const { authorId, authorName, title, topicType, targets, content } = ctx.request.body;
+    const { authorId, authorName, title, topicType, targets, content, parentTarget } = ctx.request.body;
 
     let msg = '';
-    if ([ authorId, authorName, title, topicType, targets, content ].some(item => {
+    if ([ authorId, authorName, title, topicType, targets, content, parentTarget ].some(item => {
       return item === '';
     })) {
-      msg = '信息不完整。';
+      msg = '信息不完整！';
     }
     if (msg) {
       ctx.failure(msg)
       return;
     }
-    await ctx.service.topic.createTopic({ authorId, authorName, title, topicType, targets, content});
+    await ctx.service.topic.createTopic({ authorId, authorName, title, topicType, targets, parentTarget, content});
   }
 
   /**

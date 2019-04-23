@@ -54,9 +54,11 @@ class Header extends Component {
                       </button>
                       <div className="user-avatar-wrapper">
                         <a href={'/user/' + loginInfo.id} className="fr user-avatar">
+                          <img src={loginInfo.avatarUrl} alt=""/>
                         </a>
                         <ul className="user-info-hover">
-                          <li><a href="/create/topic">个人设置</a></li>
+                          <li><a href={'/user/' + loginInfo.id}>{ loginInfo.username }</a></li>
+                          <li><a href={'/user/' + loginInfo.id}>个人设置</a></li>
                           <li><a href="">我的笔记</a></li>
                           <li><a onClick={() => this.handleClickOut()} >退出</a></li>
                         </ul>

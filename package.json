@@ -39,6 +39,7 @@
     "mysql2": "^1.6.5",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-loadable": "^5.5.0",
     "react-markdown": "^4.0.6",
     "react-marked-markdown": "^1.4.6",
     "react-redux": "^5.0.6",
@@ -48,12 +49,14 @@
     "react-router-redux": "^4.0.8",
     "redux": "^3.7.2",
     "redux-saga": "^1.0.2",
+    "simplemde": "^1.11.2",
     "stream-wormhole": "^1.1.0",
     "validator": "^10.11.0"
   },
   "devDependencies": {
     "@babel/polyfill": "^7.2.5",
     "autod-egg": "^1.0.0",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-preset-react": "^6.24.1",
     "easywebpack-cli": "^4.0.0",
     "easywebpack-react": "^4.0.0",

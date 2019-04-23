@@ -21,7 +21,7 @@ class LeftSlider extends Component {
                 return <li className="tech-square-item" key={ item.value }>
                   <a onClick={ () => this.props.handleSelectByTopicType(item.value) }>
                     <span className="tech-square-item-icon">
-                      <img src="https://avatar-static.segmentfault.com/399/739/3997397795-5a6edc1c3167f_small" alt=""/>
+                      <img src={ item.iconUrl } alt=""/>
                     </span>
                     <span>{ item.label }</span>
                   </a>

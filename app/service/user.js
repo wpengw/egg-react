@@ -65,7 +65,8 @@ class UserService extends Service {
         app.redis.set(user.username, token); // 保存到redis
         let data = {
           id: user.id,
-          username: user.username
+          username: user.username,
+          avatarUrl: user.avatarUrl
         }
         ctx.cookies.set('token', token, {
           maxAge: 7200 * 1000,

@@ -9,7 +9,7 @@ class TargetService extends Service {
     const { ctx } = this;
     try {
       let res = await ctx.model.TargetOne.findAll({
-        attributes: ['label', 'value'],
+        attributes: ['label', 'value', 'iconUrl'],
         order: [
           ['id', 'ASC']
         ],

@@ -23,6 +23,7 @@ const getCookie = (c_name) => {
 if (getCookie('token')) {
   initState.loginInfo.username = localStorage.getItem('username');
   initState.loginInfo.id = localStorage.getItem('id');
+  initState.loginInfo.avatarUrl = localStorage.getItem('url');
 }
 
 export default function (state = initState, action) {
@@ -62,6 +63,7 @@ function reduceSuccess(state, key, res) {
 function reducePostLogin(state, res) {
   localStorage.setItem('username', res.username);
   localStorage.setItem('id', res.id);
+  localStorage.setItem('url', res.avatarUrl);
   return reduceSuccess(state, 'loginInfo', res);
 }
 

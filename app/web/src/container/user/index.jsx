@@ -13,16 +13,13 @@ class User extends Component {
   constructor(props) {
     super(props);
     
-    this.state = {
-      imgUrl: ''
-    }
-
     this.beforeUpload = this.beforeUpload.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
   render() {
-    const { userDetail } = this.props;
-    const { imgUrl } = this.state;
+    const { userDetail, loginInfo } = this.props;
+    console.log(loginInfo);
+    let isLogin = loginInfo.hasOwnProperty('id') ? true : false;
     return(
       <div className="container user">
         <Row>
@@ -31,7 +28,7 @@ class User extends Component {
               <img src={ userDetail.avatarUrl } alt=""/>
               <Upload
                 name="avatar"
-                className="upload-img"
+                className={ isLogin ? 'upload-img' : ''}
                 showUploadList={false}
                 action="http://10.155.121.40:7001/api/v1/upload/img"
                 beforeUpload={ this.beforeUpload }
@@ -41,11 +38,11 @@ class User extends Component {
               </Upload>
             </div>
           </Col>
-          <Col span={10}>col-12</Col>
+          <Col span={10}>
+            <h2 className="name-title">{userDetail.username}</h2>
+          </Col>
           <Col span={10}>col-12</Col>
         </Row>
-        {/* <div>{userDetail.username}</div>
-        <div>{userDetail.id}</div> */}
       </div>
     )
   }
@@ -68,10 +65,8 @@ class User extends Component {
   }
   handleChange(info) {
     if (info.file.status === 'done') {
-      // this.setState({
-      //   imgUrl: info.avatarUrl
-      // })
       this.getUserDetail();
+      localStorage.setItem('url', info.file.response.data);
     }
   }
 
@@ -82,13 +77,15 @@ class User extends Component {
 }
 
 User.propTypes = {
-  userDetail: PropTypes.object.isRequired
+  userDetail: PropTypes.object.isRequired,
+  loginInfo: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state, props) => {
-  const { userDetail } = state.user;
+  const { userDetail, loginInfo } = state.user;
   return {
-    userDetail: userDetail || {}
+    userDetail: userDetail || {},
+    loginInfo: loginInfo || {}
   }
 }
 

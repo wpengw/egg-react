@@ -8,7 +8,8 @@ module.exports = app => {
 
   const TargetOne = db.defineModel(app, 'target_one', {
     label: { type: STRING, unique: true, allowNull: false }, // 一级标签名
-    value: { type: STRING, unique: true, allowNull: false } // 一级标签值
+    value: { type: STRING, unique: true, allowNull: false }, // 一级标签值
+    iconUrl: STRING
   })
 
   TargetOne.associate = function() {

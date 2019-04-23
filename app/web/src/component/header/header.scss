@@ -73,8 +73,12 @@
       width: 34px;
       height: 34px;
       border-radius: 50%;
-      background: url('../../../asset/images/avatar.png');
+      // background: url('../../../asset/images/avatar.png');
       background-size: contain;
+      overflow: hidden;
+      img {
+        width: 100%;
+      }
     }
     &:hover .user-info-hover {
       display: block;
